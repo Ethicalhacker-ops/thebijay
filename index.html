@@ -8,6 +8,22 @@
   <title>Bijay - It Solutions</title>
   <link rel="icon" href="favicon.ico">
   <link href="style.css" rel="stylesheet">
+  <style>
+    .sticky-clock {
+      position: -webkit-sticky; /* For Safari */
+      position: sticky;
+      top: 0;
+      background-color: #ffffff; /* Add a background color to prevent text overlap */
+      z-index: 1000; /* Ensure it stays on top of other content */
+      padding: 10px 0;
+      border-bottom: 1px solid #e2e8f0; /* Optional: Add a border for separation */
+    }
+
+    html.dark .sticky-clock {
+      background-color: #1a202c; /* Dark mode background color */
+      border-bottom: 1px solid #2d3748; /* Dark mode border color */
+    }
+  </style>
 </head>
 
 <body x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
@@ -15,7 +31,6 @@
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
   :class="{'b eh': darkMode === true}">
-  <div id="clock" class="text-center text-lg font-bold my-2"></div>
   <!-- ===== Header Start ===== -->
   <header class="g s r vd ya cj" :class="{ 'hh sm _k dj bl ll' : stickyMenu }"
     @scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false">
@@ -25,6 +40,7 @@
           <img class="om" src="images/logo-light.svg" alt="Logo Light" />
           <img class="xc nm" src="images/logo-dark.svg" alt="Logo Dark" />
         </a>
+        <div id="clock" class="text-center text-lg font-bold my-2 sticky-clock"></div>
 
         <!-- Hamburger Toggle BTN -->
         <button class="po rc" @click="navigationOpen = !navigationOpen">
@@ -742,7 +758,7 @@
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-01.png" alt="Blog" />
+              <img class="w-full" src="images/project-01.png" alt="Blog" />
 
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
                 <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
@@ -769,7 +785,7 @@
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-02.png" alt="Blog" />
+              <img class="w-full" src="images/project-02.png" alt="Blog" />
 
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
                 <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
@@ -796,7 +812,7 @@
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-03.png" alt="Blog" />
+              <img class="w-full" src="images/project-03.png" alt="Blog" />
 
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
                 <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
@@ -824,7 +840,7 @@
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-01.png" alt="Blog" />
+              <img class="w-full" src="images/project-04.png" alt="Blog" />
 
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
                 <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
@@ -851,7 +867,7 @@
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-02.png" alt="Blog" />
+              <img class="w-full" src="images/project-01.png" alt="Blog" />
 
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
                 <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
@@ -878,7 +894,7 @@
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-03.png" alt="Blog" />
+              <img class="w-full" src="images/project-02.png" alt="Blog" />
 
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
                 <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
@@ -1294,9 +1310,19 @@
       const clockElement = document.getElementById('clock');
       if (clockElement) {
         const now = new Date();
-        const date = now.toLocaleDateString();
-        const time = now.toLocaleTimeString();
-        clockElement.textContent = `${date} ${time}`;
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        const day = days[now.getDay()];
+        const date = now.getDate();
+        const month = months[now.getMonth()];
+        const year = now.getFullYear();
+
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+
+        clockElement.textContent = `${day}, ${date} ${month} ${year}, ${hours}:${minutes}:${seconds}`;
       }
     }
     setInterval(updateClock, 1000);
