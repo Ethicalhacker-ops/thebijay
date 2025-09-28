@@ -10,7 +10,7 @@
   <link href="style.css" rel="stylesheet">
 </head>
 
-<body x-data="{ page: 'dashboard', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
+<body x-data="{ page: 'dashboard', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false, 'activeTab': 'profile' }"
   x-init="
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
@@ -104,13 +104,13 @@
     <!-- ===== Dashboard Start ===== -->
     <section class="i pg fh rm ki xn vq gj qp gr hj rp hr">
       <div class="bb ze ki xn 2xl:ud-px-0">
-        <div class="tc uf sn tn un gg">
-          <div class="animate_left to/3">
-            <!-- Sidebar -->
-            <div class="sg hh sm vk xm yi _n jp hi ao kp">
+        <div class="flex flex-wrap">
+          <!-- Sidebar -->
+          <div class="w-full md:w-1/4 p-4">
+            <div class="animate_top sg hh sm vk xm yi _n jp hi ao kp">
               <h3 class="ek yj go kk wm xb">Dashboard</h3>
               <nav>
-                <ul>
+                <ul class="flex flex-col space-y-2">
                   <li><a href="#!" class="xl" @click.prevent="activeTab = 'profile'">Profile</a></li>
                   <li><a href="#!" class="xl" @click.prevent="activeTab = 'settings'">Settings</a></li>
                   <li><a href="support.html" class="xl">Support</a></li>
@@ -119,17 +119,17 @@
               </nav>
             </div>
           </div>
-          <div class="animate_right to/2">
-            <!-- Main Content -->
-            <div class="sg hh sm vk xm yi _n jp hi ao kp">
+          <!-- Main Content -->
+          <div class="w-full md:w-3/4 p-4">
+            <div class="animate_top sg hh sm vk xm yi _n jp hi ao kp">
               <h2 id="welcome-message" class="ek ck kk wm xb">Welcome, User!</h2>
               <div x-show="activeTab === 'profile'">
-                <h3 class="ek yj go kk wm xb">Profile</h3>
-                <p>View and update your profile information here.</p>
+                <h3 class="ek yj go kk wm xb mt-4">Profile</h3>
+                <p>View and update your profile information here. (Functionality to be added)</p>
               </div>
               <div x-show="activeTab === 'settings'">
-                <h3 class="ek yj go kk wm xb">Settings</h3>
-                <p>Manage your notification preferences and language options.</p>
+                <h3 class="ek yj go kk wm xb mt-4">Settings</h3>
+                <p>Manage your notification preferences and language options. (Functionality to be added)</p>
               </div>
             </div>
           </div>
