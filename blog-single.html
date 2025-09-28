@@ -21,7 +21,7 @@
     @scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false">
     <div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i">
       <div class="vd to/4 tc wf yf">
-        <a href="index.html">
+        <a href="index.html" class="flex items-center">
           <img class="om" src="images/logo-light.svg" alt="Logo Light" />
           <img class="xc nm" src="images/logo-dark.svg" alt="Logo Dark" />
         </a>
@@ -44,7 +44,7 @@
       </div>
 
       <div class="vd wo/4 sd qo f ho oo wf yf" :class="{ 'd hh rm sr td ud qg ug jc yh': navigationOpen }">
-        <nav>
+        <nav class="flex items-center">
           <ul class="tc _o sf yo cg ep">
             <li><a href="index.html" class="xl" :class="{ 'mk': page === 'home' }">Home</a></li>
             <li><a href="index.html#features" class="xl">Features</a></li>
@@ -75,6 +75,7 @@
         </nav>
 
         <div class="tc wf ig pb no">
+            <div id="clock" class="text-center text-lg font-bold my-2 mx-4"></div>
           <div class="pc h io pa ra" :class="navigationOpen ? '!-ud-visible' : 'd'">
             <label class="rc ab i">
               <input type="checkbox" :value="darkMode" @change="darkMode = !darkMode" class="pf vd yc uk h r za ab" />
@@ -98,7 +99,6 @@
       </div>
     </div>
   </header>
-
   <!-- ===== Header End ===== -->
 
   <main>
@@ -109,13 +109,13 @@
           <div class="ro">
             <div
               class="animate_top rounded-md shadow-solid-13 bg-white dark:bg-blacksection border border-stroke dark:border-strokedark p-7.5 md:p-10">
-              <img src="images/blog-04.gif" alt="Blog" />
+              <img src="images/blog-01.webp" alt="Blog" />
 
-              <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">Mastering Cyber Security: A Comprehensive Guide</h2>
+              <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">Cyber Security for Your Business</h2>
 
               <ul class="tc uf cg 2xl:ud-gap-15 fb">
                 <li><span class="rc kk wm">Author: </span> TheBijay</li>
-                <li><span class="rc kk wm">Published On: </span> 6th Nov, 2024</li>
+                <li><span class="rc kk wm">Published On: </span> 13th Feb, 2022</li>
                 <li><span class="rc kk wm">Category: </span> Cybersecurity</li>
               </ul>
 
@@ -128,13 +128,13 @@
               </p>
 
               <div class="wc qf pn dg cb">
-                <img src="images/blog-05.gif" alt="Blog" />
-                <img src="images/blog-06.gif" alt="Blog" />
+                <img src="images/blog-02.webp" alt="Blog" />
+                <img src="images/blog-03.webp" alt="Blog" />
               </div>
 
-              <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb qb">The Future of Web Development</h2>
+              <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb qb">Key Takeaways</h2>
               <p>
-                The world of web development is constantly evolving. From the rise of AI to the increasing importance of mobile-first design, there are many exciting trends to watch. In this article, we'll explore some of the most significant changes and what they mean for the future of the web.
+                This article provides actionable insights into safeguarding your digital assets. We explore the critical importance of multi-factor authentication, the role of regular security audits, and why employee training is your first line of defense. By understanding these core principles, you can build a resilient security framework that protects your business from the ever-evolving landscape of cyber threats.
               </p>
 
               <ul class="tc wf bg sb">

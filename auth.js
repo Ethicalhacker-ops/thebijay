@@ -1,38 +1,93 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('form');
-  if (!form) return;
+    const signupForm = document.querySelector('#signup-form');
+    const signinForm = document.querySelector('#signin-form');
+    const logoutBtn = document.querySelector('#logout-btn');
+    const welcomeMessage = document.querySelector('#welcome-message');
 
-  // Check if it's the signin form by looking for the #username input
-  if (form.querySelector('#username')) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      console.log('Signin form submitted');
-      const username = form.querySelector('#username').value;
-      const password = form.querySelector('#password').value;
+    // Utility to "hash" password (for simulation purposes)
+    const hashPassword = (password) => `hashed_${password}`;
 
-      if (username && password) {
-        // Simulate a successful login
-        window.location.href = 'index.html';
-      } else {
-        alert('Please fill in all fields.');
-      }
-    });
-  }
-  // Check if it's the signup form by looking for the #fullname input
-  else if (form.querySelector('#fullname')) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      console.log('Signup form submitted');
-      const fullname = form.querySelector('#fullname').value;
-      const email = form.querySelector('#email').value;
-      const password = form.querySelector('#password').value;
+    // --- Sign Up Logic ---
+    if (signupForm) {
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const fullName = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
 
-      if (fullname && email && password) {
-        // Simulate a successful signup
-        window.location.href = 'index.html';
-      } else {
-        alert('Please fill in all fields.');
-      }
-    });
-  }
+            // Validation
+            if (!fullName || !email || !password || !confirmPassword) {
+                alert('All fields are required.');
+                return;
+            }
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+            if (password.length < 8 || !/\d/.test(password) || !/[!@#$%^&*]/.test(password)) {
+                alert('Password must be at least 8 characters long and contain a number and a special character.');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            if (users.some(user => user.email === email)) {
+                alert('Email is already registered.');
+                return;
+            }
+
+            const newUser = {
+                fullName,
+                email,
+                password: hashPassword(password)
+            };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('session', JSON.stringify(newUser));
+            window.location.href = 'dashboard.html';
+        });
+    }
+
+    // --- Sign In Logic ---
+    if (signinForm) {
+        signinForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                alert('Both email and password are required.');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.email === email && u.password === hashPassword(password));
+
+            if (user) {
+                localStorage.setItem('session', JSON.stringify(user));
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Invalid credentials.');
+            }
+        });
+    }
+
+    // --- Dashboard and Logout Logic ---
+    if (window.location.pathname.endsWith('dashboard.html')) {
+        const session = JSON.parse(localStorage.getItem('session'));
+        if (!session) {
+            window.location.href = 'signin.html';
+        } else {
+            if (welcomeMessage) {
+                welcomeMessage.textContent = `Welcome, ${session.fullName}!`;
+            }
+        }
+    }
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('session');
+            window.location.href = 'signin.html';
+        });
+    }
 });
