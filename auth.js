@@ -192,6 +192,181 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('Password has been reset successfully.');
                 });
             }
+
+            const toggle2faBtn = document.getElementById('toggle-2fa-btn');
+            if (toggle2faBtn) {
+                const update2faButton = () => {
+                    const session = JSON.parse(localStorage.getItem('session'));
+                    if (session && session.twoFactorEnabled) {
+                        toggle2faBtn.textContent = 'Disable 2FA';
+                    } else {
+                        toggle2faBtn.textContent = 'Enable 2FA';
+                    }
+                };
+
+                toggle2faBtn.addEventListener('click', () => {
+                    const session = JSON.parse(localStorage.getItem('session'));
+                    if (!session) return;
+
+                    session.twoFactorEnabled = !session.twoFactorEnabled;
+                    localStorage.setItem('session', JSON.stringify(session));
+
+                    const users = JSON.parse(localStorage.getItem('users')) || [];
+                    const userIndex = users.findIndex(u => u.email === session.email);
+                    if (userIndex > -1) {
+                        users[userIndex].twoFactorEnabled = session.twoFactorEnabled;
+                        localStorage.setItem('users', JSON.stringify(users));
+                    }
+
+                    update2faButton();
+                    alert(`Two-Factor Authentication has been ${session.twoFactorEnabled ? 'enabled' : 'disabled'}.`);
+                });
+
+                update2faButton(); // Set initial button text on page load
+            }
+
+            // Blog Management Logic
+            const blogModal = document.getElementById('blog-post-modal');
+            const blogPostForm = document.getElementById('blog-post-form');
+            const blogPostsTable = document.getElementById('blog-posts-table');
+
+            const renderBlogPosts = () => {
+                if (!blogPostsTable) return;
+                let posts = JSON.parse(localStorage.getItem('blogPosts'));
+                if (!posts) {
+                    // Seed with some initial data if none exists
+                    posts = [
+                        { title: 'Cyber Security for Your Business', category: 'Cybersecurity', date: '2022-02-13T00:00:00.000Z', content: 'In today...', imageUrl: 'https://images.unsplash.com/photo-1593642702821-c8da6771f0c6' },
+                        { title: 'Cloud Computing for IT', category: 'Cloud', date: '2023-11-06T00:00:00.000Z', content: 'Cloud computing has...', imageUrl: 'https://images.unsplash.com/photo-1517694712202-1428bc38aa4a' }
+                    ];
+                    localStorage.setItem('blogPosts', JSON.stringify(posts));
+                }
+
+                blogPostsTable.innerHTML = '';
+                posts.forEach((post, index) => {
+                    const row = `
+                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                            <td class="p-3">${post.title}</td>
+                            <td class="p-3">${post.category}</td>
+                            <td class="p-3">${new Date(post.date).toLocaleDateString()}</td>
+                            <td class="p-3">
+                                <button class="text-blue-500 hover:underline" onclick="editPost(${index})">Edit</button>
+                                <button class="text-red-500 hover:underline ml-2" onclick="deletePost(${index})">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+                    blogPostsTable.insertAdjacentHTML('beforeend', row);
+                });
+            };
+
+            window.editPost = (index) => {
+                const posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+                const post = posts[index];
+                if (post) {
+                    document.getElementById('blog-post-id').value = index;
+                    document.getElementById('blog-title').value = post.title;
+                    document.getElementById('blog-category').value = post.category;
+                    document.getElementById('blog-content').value = post.content;
+                    document.getElementById('blog-image-url').value = post.imageUrl;
+                    blogModal.__x.$data.blogModalOpen = true;
+                }
+            };
+
+            window.deletePost = (index) => {
+                if (confirm('Are you sure you want to delete this post?')) {
+                    let posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+                    posts.splice(index, 1);
+                    localStorage.setItem('blogPosts', JSON.stringify(posts));
+                    renderBlogPosts();
+                }
+            };
+
+            if (blogPostForm) {
+                blogPostForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const postId = document.getElementById('blog-post-id').value;
+                    const post = {
+                        title: document.getElementById('blog-title').value,
+                        category: document.getElementById('blog-category').value,
+                        content: document.getElementById('blog-content').value,
+                        imageUrl: document.getElementById('blog-image-url').value,
+                        date: new Date().toISOString()
+                    };
+
+                    let posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+                    if (postId !== '') {
+                        posts[postId] = post;
+                    } else {
+                        posts.push(post);
+                    }
+                    localStorage.setItem('blogPosts', JSON.stringify(posts));
+                    renderBlogPosts();
+                    blogModal.__x.$data.blogModalOpen = false;
+                    blogPostForm.reset();
+                    document.getElementById('blog-post-id').value = '';
+                });
+            }
+
+            // Initial render for blog posts
+            renderBlogPosts();
+
+            const createProjectBtn = document.getElementById('create-project-btn');
+            if (createProjectBtn) {
+                createProjectBtn.addEventListener('click', () => {
+                    const projectName = prompt("Enter the new project name:");
+                    if (projectName) {
+                        const projectsContainer = document.getElementById('projects-container');
+                        const newProjectHTML = `
+                            <div class="p-4 bg-gray-200 dark:bg-gray-700 rounded-lg">
+                                <h4 class="font-bold text-lg">${projectName}</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                                    <div>
+                                        <h5 class="font-semibold mb-2 text-center">To Do</h5>
+                                        <div class="space-y-2"></div>
+                                        <button class="mt-3 w-full text-sm text-blue-500 hover:underline">Add Task</button>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold mb-2 text-center">In Progress</h5>
+                                        <div class="space-y-2"></div>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold mb-2 text-center">Done</h5>
+                                        <div class="space-y-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        projectsContainer.insertAdjacentHTML('beforeend', newProjectHTML);
+                        alert(`Project "${projectName}" created successfully.`);
+                    }
+                });
+            }
+
+            const fileUploadInput = document.getElementById('file-upload-input');
+            const filePreview = document.getElementById('file-preview');
+
+            if (fileUploadInput) {
+                fileUploadInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        filePreview.innerHTML = ''; // Clear previous preview
+                        const fileReader = new FileReader();
+
+                        fileReader.onload = () => {
+                            let previewContent = '';
+                            if (file.type.startsWith('image/')) {
+                                previewContent = `<img src="${fileReader.result}" alt="${file.name}" class="max-h-48 mx-auto">`;
+                            } else {
+                                previewContent = `<p class="text-center">${file.name}</p>`;
+                            }
+                            filePreview.innerHTML = previewContent;
+                            alert(`File "${file.name}" selected and ready for upload.`);
+                        };
+
+                        fileReader.readAsDataURL(file);
+                    }
+                });
+            }
         }
     }
 
