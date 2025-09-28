@@ -10,7 +10,7 @@
   <link href="style.css" rel="stylesheet">
 </head>
 
-<body x-data="{ page: 'dashboard', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false, 'activeTab': 'profile', 'editModalOpen': false, 'passwordModalOpen': false }"
+<body x-data="{ page: 'dashboard', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false, 'activeTab': 'profile', 'editModalOpen': false, 'passwordModalOpen': false, 'blogModalOpen': false }"
   x-init="
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
@@ -37,6 +37,9 @@
         </a>
         <a href="#" @click.prevent="activeTab = 'projects-tasks'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'projects-tasks' }">
           <span class="mx-3">Projects & Tasks</span>
+        </a>
+        <a href="#" @click.prevent="activeTab = 'blog-management'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'blog-management' }">
+            <span class="mx-3">Blog Management</span>
         </a>
         <a href="#" @click.prevent="activeTab = 'messaging-notifications'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'messaging-notifications' }">
             <span class="mx-3">Messaging & Notifications</span>
@@ -120,6 +123,11 @@
               <div class="mt-6">
                   <h4 class="font-bold">Security</h4>
                   <a href="#" id="reset-password-link" class="text-blue-500 hover:underline">Reset Password</a>
+                    <div class="mt-4">
+                        <h5 class="font-semibold">Two-Factor Authentication (2FA)</h5>
+                        <p class="text-sm text-gray-500">Add an extra layer of security to your account.</p>
+                        <button id="toggle-2fa-btn" class="mt-2 text-sm text-blue-500 hover:underline">Enable 2FA</button>
+                    </div>
               </div>
               <div class="mt-6">
                   <h4 class="font-bold">Preferences</h4>
@@ -137,11 +145,173 @@
 
         <!-- Other Sections -->
         <div x-show="activeTab === 'user-management'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>User Management</h3><p>Content for User Management goes here.</p></div></div>
-        <div x-show="activeTab === 'analytics-reports'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Analytics & Reports</h3><p>Content for Analytics & Reports goes here.</p></div></div>
-        <div x-show="activeTab === 'projects-tasks'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Projects & Tasks</h3><p>Content for Projects & Tasks goes here.</p></div></div>
-        <div x-show="activeTab === 'messaging-notifications'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Messaging & Notifications</h3><p>Content for Messaging & Notifications goes here.</p></div></div>
+        <div x-show="activeTab === 'analytics-reports'">
+          <div class="animate_top sg hh sm vk xm yi _n jp hi ao kp">
+            <h3 class="ek yj go kk wm xb">Analytics & Reports</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+              <div class="p-4 bg-gray-200 dark:bg-gray-700 rounded-lg text-center">
+                <h4 class="font-bold text-lg">Active Users</h4>
+                <p class="text-3xl font-bold">1,234</p>
+              </div>
+              <div class="p-4 bg-gray-200 dark:bg-gray-700 rounded-lg text-center">
+                <h4 class="font-bold text-lg">Page Views</h4>
+                <p class="text-3xl font-bold">56,789</p>
+              </div>
+              <div class="p-4 bg-gray-200 dark:bg-gray-700 rounded-lg text-center">
+                <h4 class="font-bold text-lg">New Signups</h4>
+                <p class="text-3xl font-bold">123</p>
+              </div>
+              <div class="p-4 bg-gray-200 dark:bg-gray-700 rounded-lg text-center">
+                <h4 class="font-bold text-lg">Bounce Rate</h4>
+                <p class="text-3xl font-bold">45%</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+              <div class="p-4 bg-gray-200 dark:bg-gray-700 rounded-lg">
+                <h4 class="font-bold text-lg mb-2">User Traffic</h4>
+                <svg viewBox="0 0 100 50" class="w-full h-auto">
+                  <polyline fill="none" stroke="#4A90E2" stroke-width="2" points="0,45 10,30 20,35 30,20 40,25 50,10 60,15 70,5 80,10 90,20 100,25" />
+                </svg>
+              </div>
+              <div class="p-4 bg-gray-200 dark:bg-gray-700 rounded-lg">
+                <h4 class="font-bold text-lg mb-2">Top Posts</h4>
+                <ul>
+                  <li>1. Cyber Security for Your Business</li>
+                  <li>2. Cloud Computing for IT</li>
+                  <li>3. The Future of AI</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div x-show="activeTab === 'projects-tasks'">
+          <div class="animate_top sg hh sm vk xm yi _n jp hi ao kp">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="ek yj go kk wm xb">Projects & Tasks</h3>
+              <button id="create-project-btn" class="lk gh dk rg tc wf xf _l gi hi">Create New Project</button>
+            </div>
+
+            <!-- Projects Container -->
+            <div id="projects-container" class="space-y-6">
+              <!-- Sample Project -->
+              <div class="p-4 bg-gray-200 dark:bg-gray-700 rounded-lg">
+                <h4 class="font-bold text-lg">Sample Project</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                  <!-- To Do Column -->
+                  <div>
+                    <h5 class="font-semibold mb-2 text-center">To Do</h5>
+                    <div class="space-y-2">
+                      <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow">Design the new login page.</div>
+                      <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow">Develop the API for user authentication.</div>
+                    </div>
+                    <button class="mt-3 w-full text-sm text-blue-500 hover:underline">Add Task</button>
+                  </div>
+                  <!-- In Progress Column -->
+                  <div>
+                    <h5 class="font-semibold mb-2 text-center">In Progress</h5>
+                    <div class="space-y-2">
+                      <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow">Implement the new dashboard layout.</div>
+                    </div>
+                  </div>
+                  <!-- Done Column -->
+                  <div>
+                    <h5 class="font-semibold mb-2 text-center">Done</h5>
+                    <div class="space-y-2">
+                      <div class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow line-through">Create the project proposal.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div x-show="activeTab === 'blog-management'">
+          <div class="animate_top sg hh sm vk xm yi _n jp hi ao kp">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="ek yj go kk wm xb">Blog Management</h3>
+              <button @click="blogModalOpen = true" class="lk gh dk rg tc wf xf _l gi hi">Create New Post</button>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left">
+                <thead>
+                  <tr class="border-b-2 border-gray-200 dark:border-gray-700">
+                    <th class="p-3">Title</th>
+                    <th class="p-3">Category</th>
+                    <th class="p-3">Date</th>
+                    <th class="p-3">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="blog-posts-table">
+                  <!-- Blog posts will be injected here by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div x-show="activeTab === 'messaging-notifications'">
+          <div class="animate_top sg hh sm vk xm yi _n jp hi ao kp">
+            <h3 class="ek yj go kk wm xb">Messaging & Notifications</h3>
+            <div class="flex mt-4" style="height: 60vh;">
+              <!-- Conversation List -->
+              <div class="w-1/3 border-r border-gray-200 dark:border-gray-700 pr-4">
+                <div class="flex items-center p-3 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg cursor-pointer">
+                  <img src="https://i.pravatar.cc/150?u=a042581f4e29026704e" alt="User" class="h-10 w-10 rounded-full object-cover mr-3">
+                  <div>
+                    <h4 class="font-semibold">Support Team</h4>
+                    <p class="text-sm text-gray-500">Thanks for reaching out! We'll...</p>
+                  </div>
+                </div>
+                <div class="flex items-center p-3 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg cursor-pointer">
+                  <img src="https://i.pravatar.cc/150?u=a042581f4e29026704f" alt="User" class="h-10 w-10 rounded-full object-cover mr-3">
+                  <div>
+                    <h4 class="font-semibold">Project Alpha</h4>
+                    <p class="text-sm text-gray-500">Meeting at 3 PM today.</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Message View -->
+              <div class="w-2/3 pl-4 flex flex-col">
+                <div class="flex-1 space-y-4">
+                  <div class="flex justify-start">
+                    <div class="p-3 bg-gray-200 dark:bg-gray-700 rounded-lg">
+                      Hello! How can we help you today?
+                    </div>
+                  </div>
+                  <div class="flex justify-end">
+                    <div class="p-3 bg-blue-500 text-white rounded-lg">
+                      I have a question about my billing.
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <input type="text" placeholder="Type your message..." class="w-full vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div x-show="activeTab === 'finance-billing'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Finance & Billing</h3><p>Content for Finance & Billing goes here.</p></div></div>
-        <div x-show="activeTab === 'files-documents'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Files & Documents</h3><p>Content for Files & Documents goes here.</p></div></div>
+        <div x-show="activeTab === 'files-documents'">
+          <div class="animate_top sg hh sm vk xm yi _n jp hi ao kp">
+            <h3 class="ek yj go kk wm xb">Files & Documents</h3>
+            <div class="mt-4">
+              <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center">
+                <input type="file" id="file-upload-input" class="hidden">
+                <label for="file-upload-input" class="cursor-pointer">
+                  <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span class="mt-2 block text-sm font-medium text-gray-900 dark:text-gray-100">
+                    Click to upload a file
+                  </span>
+                </label>
+              </div>
+              <div id="file-preview" class="mt-4"></div>
+            </div>
+          </div>
+        </div>
         <div x-show="activeTab === 'support-helpdesk'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Support & Helpdesk</h3><p>Content for Support & Helpdesk goes here.</p></div></div>
         <div x-show="activeTab === 'integrations'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Integrations</h3><p>Content for Integrations goes here.</p></div></div>
         <div x-show="activeTab === 'ecommerce'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>E-commerce</h3><p>Content for E-commerce goes here.</p></div></div>
@@ -228,6 +398,36 @@
               <div class="flex justify-end">
                   <button type="button" @click="passwordModalOpen = false" class="lk gh dk rg tc wf xf _l gi hi mr-2">Cancel</button>
                   <button type="submit" class="lk gh dk rg tc wf xf _l gi hi">Save</button>
+              </div>
+          </form>
+      </div>
+  </div>
+
+  <!-- Blog Post Modal -->
+  <div id="blog-post-modal" x-show="blogModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display: none;">
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-2/3">
+          <h2 class="text-2xl font-bold mb-4">Create/Edit Blog Post</h2>
+          <form id="blog-post-form">
+              <input type="hidden" id="blog-post-id">
+              <div class="mb-4">
+                  <label for="blog-title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>
+                  <input type="text" id="blog-title" name="blog-title" class="mt-1 block w-full vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40">
+              </div>
+              <div class="mb-4">
+                  <label for="blog-category" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Category</label>
+                  <input type="text" id="blog-category" name="blog-category" class="mt-1 block w-full vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40">
+              </div>
+              <div class="mb-4">
+                  <label for="blog-content" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Content</label>
+                  <textarea id="blog-content" name="blog-content" rows="6" class="mt-1 block w-full vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"></textarea>
+              </div>
+              <div class="mb-4">
+                  <label for="blog-image-url" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Thumbnail Image URL</label>
+                  <input type="url" id="blog-image-url" name="blog-image-url" class="mt-1 block w-full vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40">
+              </div>
+              <div class="flex justify-end">
+                  <button type="button" @click="blogModalOpen = false" class="lk gh dk rg tc wf xf _l gi hi mr-2">Cancel</button>
+                  <button type="submit" class="lk gh dk rg tc wf xf _l gi hi">Save Post</button>
               </div>
           </form>
       </div>
