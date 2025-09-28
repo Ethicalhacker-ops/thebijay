@@ -10,170 +10,228 @@
   <link href="style.css" rel="stylesheet">
 </head>
 
-<body x-data="{ page: 'dashboard', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false, 'activeTab': 'profile' }"
+<body x-data="{ page: 'dashboard', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false, 'activeTab': 'profile', 'editModalOpen': false, 'passwordModalOpen': false }"
   x-init="
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
   :class="{'b eh': darkMode === true}">
-  <!-- ===== Header Start ===== -->
-  <header class="g s r vd ya cj" :class="{ 'hh sm _k dj bl ll' : stickyMenu }"
-    @scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false">
-    <div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i">
-      <div class="vd to/4 tc wf yf">
+
+  <div class="flex h-screen bg-gray-100 dark:bg-gray-900">
+    <!-- Sidebar -->
+    <div class="w-64 bg-white dark:bg-gray-800 shadow-md hidden md:block">
+      <div class="p-4">
         <a href="index.html" class="flex items-center">
-          <img class="om" src="images/logo-light.svg" alt="Logo Light" />
-          <img class="xc nm" src="images/logo-dark.svg" alt="Logo Dark" />
+            <img class="om" src="images/logo-light.svg" alt="Logo Light" />
+            <img class="xc nm" src="images/logo-dark.svg" alt="Logo Dark" />
         </a>
-
-        <!-- Hamburger Toggle BTN -->
-        <button class="po rc" @click="navigationOpen = !navigationOpen">
-          <span class="rc i pf re pd">
-            <span class="du-block h q vd yc">
-              <span class="rc i r s eh um tg te rd eb ml jl dl" :class="{ 'ue el': !navigationOpen }"></span>
-              <span class="rc i r s eh um tg te rd eb ml jl fl" :class="{ 'ue qr': !navigationOpen }"></span>
-              <span class="rc i r s eh um tg te rd eb ml jl gl" :class="{ 'ue hl': !navigationOpen }"></span>
-            </span>
-            <span class="du-block h q vd yc lf">
-              <span class="rc eh um tg ml jl el h na r ve yc" :class="{ 'sd dl': !navigationOpen }"></span>
-              <span class="rc eh um tg ml jl qr h s pa vd rd" :class="{ 'sd rr': !navigationOpen }"></span>
-            </span>
-          </span>
-        </button>
-        <!-- Hamburger Toggle BTN -->
       </div>
-
-      <div class="vd wo/4 sd qo f ho oo wf yf" :class="{ 'd hh rm sr td ud qg ug jc yh': navigationOpen }">
-        <nav class="flex items-center">
-          <ul class="tc _o sf yo cg ep">
-            <li><a href="index.html" class="xl" :class="{ 'mk': page === 'home' }">Home</a></li>
-            <li><a href="index.html#features" class="xl">Features</a></li>
-            <li class="c i" x-data="{ dropdown: false }">
-              <a href="#!" class="xl tc wf yf bg" @click.prevent="dropdown = !dropdown"
-                :class="{ 'mk': page === 'blog-grid' || page === 'blog-single' || page === 'signin' || page === 'signup' || page === '404' }">
-                Pages
-
-                <svg :class="{ 'wh': dropdown }" class="th mm we fd pf" xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512">
-                  <path
-                    d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
-                </svg>
-              </a>
-
-              <!-- Dropdown Start -->
-              <ul class="a" :class="{ 'tc': dropdown }">
-                <li><a href="blog-grid.html" class="xl" :class="{ 'mk': page === 'blog-grid' }">Blog Grid</a></li>
-                <li><a href="blog-single.html" class="xl" :class="{ 'mk': page === 'blog-single' }">Blog Single</a></li>
-                <li><a href="signin.html" class="xl" :class="{ 'mk': page === 'signin' }">Sign In</a></li>
-                <li><a href="signup.html" class="xl" :class="{ 'mk': page === 'signup' }">Sign Up</a></li>
-                <li><a href="404.html" class="xl" :class="{ 'mk': page === '404' }">404</a></li>
-              </ul>
-              <!-- Dropdown End -->
-            </li>
-            <li><a href="index.html#support" class="xl">Support</a></li>
-          </ul>
-        </nav>
-
-        <div class="tc wf ig pb no">
-            <div id="clock" class="text-center text-lg font-bold my-2 mx-4"></div>
-          <div class="pc h io pa ra" :class="navigationOpen ? '!-ud-visible' : 'd'">
-            <label class="rc ab i">
-              <input type="checkbox" :value="darkMode" @change="darkMode = !darkMode" class="pf vd yc uk h r za ab" />
-              <!-- Icon Sun -->
-              <svg :class="{ 'wn' : page === 'home', 'xh' : page === 'home' && stickyMenu }" class="th om" width="25"
-                height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12.0908 18.6363C10.3549 18.6363 8.69 17.9467 7.46249 16.7192C6.23497 15.4916 5.54537 13.8268 5.54537 12.0908C5.54537 10.3549 6.23497 8.69 7.46249 7.46249C8.69 6.23497 10.3549 5.54537 12.0908 5.54537C13.8268 5.54537 15.4916 6.23497 16.7192 7.46249C17.9467 8.69 18.6363 10.3549 18.6363 12.0908C18.6363 13.8268 17.9467 15.4916 16.7192 16.7192C15.4916 17.9467 13.8268 18.6363 12.0908 18.6363ZM12.0908 16.4545C13.2481 16.4545 14.358 15.9947 15.1764 15.1764C15.9947 14.358 16.4545 13.2481 16.4545 12.0908C16.4545 10.9335 15.9947 9.8236 15.1764 9.00526C14.358 8.18692 13.2481 7.72718 12.0908 7.72718C10.9335 7.72718 9.8236 8.18692 9.00526 9.00526C8.18692 9.8236 7.72718 10.9335 7.72718 12.0908C7.72718 13.2481 8.18692 14.358 9.00526 15.1764C9.8236 15.9947 10.9335 16.4545 12.0908 16.4545ZM10.9999 0.0908203H13.1817V3.36355H10.9999V0.0908203ZM10.9999 20.8181H13.1817V24.0908H10.9999V20.8181ZM2.83446 4.377L4.377 2.83446L6.69082 5.14828L5.14828 6.69082L2.83446 4.37809V4.377ZM17.4908 19.0334L19.0334 17.4908L21.3472 19.8046L19.8046 21.3472L17.4908 19.0334ZM19.8046 2.83337L21.3472 4.377L19.0334 6.69082L17.4908 5.14828L19.8046 2.83446V2.83337ZM5.14828 17.4908L6.69082 19.0334L4.377 21.3472L2.83446 19.8046L5.14828 17.4908ZM24.0908 10.9999V13.1817H20.8181V10.9999H24.0908ZM3.36355 10.9999V13.1817H0.0908203V10.9999H3.36355Z"
-                  fill="" />
-              </svg>
-              <!-- Icon Sun -->
-              <img class="xc nm" src="images/icon-moon.svg" alt="Moon" />
-            </label>
-          </div>
-
-          <a href="signin.html" :class="{ 'nk yl' : page === 'home', 'ok' : page === 'home' && stickyMenu }"
-            class="ek pk xl">Sign In</a>
-          <a href="signup.html" :class="{ 'hh/[0.15]' : page === 'home', 'sh' : page === 'home' && stickyMenu }"
-            class="lk gh dk rg tc wf xf _l gi hi">Sign Up</a>
-        </div>
-      </div>
+      <nav class="mt-5">
+        <a href="#" @click.prevent="activeTab = 'profile'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'profile' }">
+          <span class="mx-3">Profile & Account</span>
+        </a>
+        <a href="#" @click.prevent="activeTab = 'user-management'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'user-management' }">
+          <span class="mx-3">User Management</span>
+        </a>
+        <a href="#" @click.prevent="activeTab = 'analytics-reports'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'analytics-reports' }">
+          <span class="mx-3">Analytics & Reports</span>
+        </a>
+        <a href="#" @click.prevent="activeTab = 'projects-tasks'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'projects-tasks' }">
+          <span class="mx-3">Projects & Tasks</span>
+        </a>
+        <a href="#" @click.prevent="activeTab = 'messaging-notifications'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'messaging-notifications' }">
+            <span class="mx-3">Messaging & Notifications</span>
+        </a>
+        <a href="#" @click.prevent="activeTab = 'finance-billing'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'finance-billing' }">
+            <span class="mx-3">Finance & Billing</span>
+        </a>
+        <a href="#" @click.prevent="activeTab = 'files-documents'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'files-documents' }">
+            <span class="mx-3">Files & Documents</span>
+        </a>
+        <a href="#" @click.prevent="activeTab = 'support-helpdesk'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'support-helpdesk' }">
+            <span class="mx-3">Support & Helpdesk</span>
+        </a>
+        <a href="#" @click.prevent="activeTab = 'integrations'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'integrations' }">
+            <span class="mx-3">Integrations</span>
+        </a>
+        <a href="#" @click.prevent="activeTab = 'ecommerce'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'ecommerce' }">
+            <span class="mx-3">E-commerce</span>
+        </a>
+        <a href="#" @click.prevent="activeTab = 'settings'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'settings' }">
+            <span class="mx-3">Customization & Settings</span>
+        </a>
+        <a href="#" @click.prevent="activeTab = 'security'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'security' }">
+            <span class="mx-3">Security</span>
+        </a>
+        <a href="#" @click.prevent="activeTab = 'admin-system'" class="flex items-center mt-4 py-2 px-6 text-gray-700 dark:text-gray-300" :class="{ 'bg-gray-200 dark:bg-gray-700': activeTab === 'admin-system' }">
+            <span class="mx-3">Admin & System</span>
+        </a>
+      </nav>
     </div>
-  </header>
-  <!-- ===== Header End ===== -->
 
-  <main>
-    <!-- ===== Dashboard Start ===== -->
-    <section class="i pg fh rm ki xn vq gj qp gr hj rp hr">
-      <div class="bb ze ki xn 2xl:ud-px-0">
-        <div class="flex flex-wrap">
-          <!-- Sidebar -->
-          <div class="w-full md:w-1/4 p-4">
-            <div class="animate_top sg hh sm vk xm yi _n jp hi ao kp">
-              <h3 class="ek yj go kk wm xb">Dashboard</h3>
-              <nav>
-                <ul class="flex flex-col space-y-2">
-                  <li><a href="#!" class="xl" @click.prevent="activeTab = 'profile'">Profile</a></li>
-                  <li><a href="#!" class="xl" @click.prevent="activeTab = 'settings'">Settings</a></li>
-                  <li><a href="support.html" class="xl">Support</a></li>
-                  <li><a href="#!" id="logout-btn" class="xl">Logout</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-          <!-- Main Content -->
-          <div class="w-full md:w-3/4 p-4">
-            <div class="animate_top sg hh sm vk xm yi _n jp hi ao kp">
-              <h2 id="welcome-message" class="ek ck kk wm xb">Welcome, User!</h2>
-              <div x-show="activeTab === 'profile'">
-                <h3 class="ek yj go kk wm xb mt-4">Profile</h3>
-                <p>View and update your profile information here. (Functionality to be added)</p>
-              </div>
-              <div x-show="activeTab === 'settings'">
-                <h3 class="ek yj go kk wm xb mt-4">Settings</h3>
-                <p>Manage your notification preferences and language options. (Functionality to be added)</p>
-              </div>
+    <div class="flex-1 flex flex-col overflow-hidden">
+      <!-- Top Bar -->
+      <header class="flex justify-between items-center p-4 bg-white dark:bg-gray-800 shadow-md">
+        <div class="flex items-center">
+          <input type="text" placeholder="Global Search" class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40">
+        </div>
+        <div class="flex items-center">
+          <a href="#" class="text-gray-500 hover:text-gray-700 mx-4">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+          </a>
+          <a href="#" class="text-gray-500 hover:text-gray-700 mx-4">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+          </a>
+          <div x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="flex items-center text-gray-500 hover:text-gray-700">
+                <img id="top-bar-profile-pic" src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="User" class="h-8 w-8 rounded-full object-cover mx-2">
+                <span id="username-display" class="hidden md:inline">User</span>
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1">
+              <a href="#" @click.prevent="activeTab = 'settings'" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Settings</a>
+              <a href="#" id="logout-btn" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <!-- ===== Dashboard End ===== -->
-  </main>
+      </header>
 
-  <!-- ===== Footer Start ===== -->
-  <footer>
-    <div class="bb ze ki xn 2xl:ud-px-0">
-      <!-- Footer Bottom -->
-      <div class="bh ch pm tc uf sf yo wf xf ap cg fp bj">
-        <div class="animate_top">
-          <ul class="tc wf gg">
-            <li><a href="english.html" class="xl">English</a></li>
-            <li><a href="privacy-policy.html" class="xl">Privacy Policy</a></li>
-            <li><a href="support.html" class="xl">Support</a></li>
-          </ul>
+      <!-- Main Content -->
+      <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 dark:bg-gray-900 p-4">
+        <!-- Profile & Account -->
+        <div x-show="activeTab === 'profile'">
+          <div class="animate_top sg hh sm vk xm yi _n jp hi ao kp">
+            <h2 id="welcome-message" class="ek ck kk wm xb">Welcome, User!</h2>
+            <div class="mt-4">
+              <h3 class="ek yj go kk wm xb">Profile & Account</h3>
+              <div class="flex items-center mt-4">
+                  <img id="profile-pic" src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="User" class="h-24 w-24 rounded-full object-cover">
+                  <div class="ml-4">
+                      <h4 id="profile-name" class="text-lg font-bold">User Name</h4>
+                      <p id="profile-email" class="text-sm text-gray-500">user@example.com</p>
+                      <button id="upload-pic-btn" class="text-sm text-blue-500 hover:underline">Upload Profile Picture</button>
+                  </div>
+              </div>
+              <div class="mt-6">
+                  <h4 class="font-bold">Details</h4>
+                  <p><strong>Phone:</strong> <span id="profile-phone">N/A</span></p>
+                  <p><strong>Address:</strong> <span id="profile-address">N/A</span></p>
+                  <p><strong>Account Status:</strong> <span class="text-green-500">Active</span></p>
+                  <button id="edit-profile-btn" class="lk gh dk rg tc wf xf _l gi hi mt-2">Edit Profile</button>
+              </div>
+              <div class="mt-6">
+                  <h4 class="font-bold">Security</h4>
+                  <a href="#" id="reset-password-link" class="text-blue-500 hover:underline">Reset Password</a>
+              </div>
+              <div class="mt-6">
+                  <h4 class="font-bold">Preferences</h4>
+                  <p>Notifications: <a href="#" class="text-blue-500 hover:underline">Manage</a></p>
+                  <p>Language: <a href="#" class="text-blue-500 hover:underline">Manage</a></p>
+              </div>
+              <div class="mt-6">
+                  <h4 class="font-bold">Activity</h4>
+                  <a href="#" class="text-blue-500 hover:underline">View Activity Log</a><br>
+                  <a href="#" class="text-blue-500 hover:underline">View Login History</a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="animate_top">
-          <p>&copy; 2025 Bijay. All rights reserved. Distributed by <a href="https://jayprasad.com.np" rel="nofollow" target="_blank">TheBijay</a></p>
+        <!-- Other Sections -->
+        <div x-show="activeTab === 'user-management'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>User Management</h3><p>Content for User Management goes here.</p></div></div>
+        <div x-show="activeTab === 'analytics-reports'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Analytics & Reports</h3><p>Content for Analytics & Reports goes here.</p></div></div>
+        <div x-show="activeTab === 'projects-tasks'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Projects & Tasks</h3><p>Content for Projects & Tasks goes here.</p></div></div>
+        <div x-show="activeTab === 'messaging-notifications'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Messaging & Notifications</h3><p>Content for Messaging & Notifications goes here.</p></div></div>
+        <div x-show="activeTab === 'finance-billing'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Finance & Billing</h3><p>Content for Finance & Billing goes here.</p></div></div>
+        <div x-show="activeTab === 'files-documents'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Files & Documents</h3><p>Content for Files & Documents goes here.</p></div></div>
+        <div x-show="activeTab === 'support-helpdesk'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Support & Helpdesk</h3><p>Content for Support & Helpdesk goes here.</p></div></div>
+        <div x-show="activeTab === 'integrations'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Integrations</h3><p>Content for Integrations goes here.</p></div></div>
+        <div x-show="activeTab === 'ecommerce'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>E-commerce</h3><p>Content for E-commerce goes here.</p></div></div>
+        <div x-show="activeTab === 'settings'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Customization & Settings</h3><p>Content for Customization & Settings goes here.</p></div></div>
+        <div x-show="activeTab === 'security'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Security</h3><p>Content for Security goes here.</p></div></div>
+        <div x-show="activeTab === 'admin-system'"><div class="animate_top sg hh sm vk xm yi _n jp hi ao kp"><h3>Admin & System</h3><p>Content for Admin & System goes here.</p></div></div>
+
+        <!-- Customizable Widgets -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            <div class="animate_top sg hh sm vk xm yi _n jp hi ao kp">
+                <h4 class="font-bold">Tasks</h4>
+                <p>Your tasks will be displayed here.</p>
+            </div>
+            <div class="animate_top sg hh sm vk xm yi _n jp hi ao kp">
+                <h4 class="font-bold">Reports</h4>
+                <p>Your reports will be displayed here.</p>
+            </div>
+            <div class="animate_top sg hh sm vk xm yi _n jp hi ao kp">
+                <h4 class="font-bold">Finance</h4>
+                <p>Your financial data will be displayed here.</p>
+            </div>
         </div>
-      </div>
-      <!-- Footer Bottom -->
+        <!-- Quick Actions -->
+        <div class="mt-4">
+            <button class="lk gh dk rg tc wf xf _l gi hi">Add Project</button>
+            <button class="lk gh dk rg tc wf xf _l gi hi">Raise Ticket</button>
+            <button class="lk gh dk rg tc wf xf _l gi hi">Upload File</button>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="p-4 bg-white dark:bg-gray-800 shadow-md text-center">
+        <p>&copy; 2025 Bijay. All rights reserved. Distributed by <a href="https://thebijay.com" rel="nofollow" target="_blank">TheBijay</a> | <a href="contact-us.html">Contact Support</a></p>
+      </footer>
     </div>
-  </footer>
-  <!-- ===== Footer End ===== -->
-
-  <!-- ====== Back To Top Start ===== -->
-  <button class="xc wf xf ie ld vg sr gh tr g sa ta _a" @click="window.scrollTo({top: 0, behavior: 'smooth'})"
-    @scroll.window="scrollTop = (window.pageYOffset > 50) ? true : false" :class="{ 'uc' : scrollTop }">
-    <svg class="uh se qd" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-      <path
-        d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" />
-    </svg>
-  </button>
-  <!-- ====== Back To Top End ===== -->
+  </div>
 
   <script defer src="bundle.js"></script>
   <script src="js/main.js"></script>
   <script src="auth.js"></script>
+
+  <!-- Edit Profile Modal -->
+  <div id="edit-profile-modal" x-show="editModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display: none;">
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-1/3">
+        <h2 class="text-2xl font-bold mb-4">Edit Profile</h2>
+        <form id="edit-profile-form">
+            <div class="mb-4">
+                <label for="edit-fullname" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</label>
+                <input type="text" id="edit-fullname" name="fullname" class="mt-1 block w-full vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40">
+            </div>
+            <div class="mb-4">
+                <label for="edit-phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Phone</label>
+                <input type="text" id="edit-phone" name="phone" class="mt-1 block w-full vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40">
+            </div>
+            <div class="mb-4">
+                <label for="edit-address" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Address</label>
+                <input type="text" id="edit-address" name="address" class="mt-1 block w-full vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40">
+            </div>
+            <div class="mb-4">
+                <label for="edit-pic-url" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Profile Picture URL</label>
+                <input type="url" id="edit-pic-url" name="pic-url" class="mt-1 block w-full vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40">
+            </div>
+            <div class="flex justify-end">
+                <button type="button" @click="editModalOpen = false" class="lk gh dk rg tc wf xf _l gi hi mr-2">Cancel</button>
+                <button type="submit" class="lk gh dk rg tc wf xf _l gi hi">Save</button>
+            </div>
+        </form>
+    </div>
+  </div>
+
+  <!-- Password Reset Modal -->
+  <div id="password-reset-modal" x-show="passwordModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display: none;">
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-1/3">
+          <h2 class="text-2xl font-bold mb-4">Reset Password</h2>
+          <form id="password-reset-form">
+              <div class="mb-4">
+                  <label for="new-password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">New Password</label>
+                  <input type="password" id="new-password" name="new-password" class="mt-1 block w-full vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40">
+              </div>
+              <div class="mb-4">
+                  <label for="confirm-password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Confirm New Password</label>
+                  <input type="password" id="confirm-password" name="confirm-password" class="mt-1 block w-full vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40">
+              </div>
+              <div class="flex justify-end">
+                  <button type="button" @click="passwordModalOpen = false" class="lk gh dk rg tc wf xf _l gi hi mr-2">Cancel</button>
+                  <button type="submit" class="lk gh dk rg tc wf xf _l gi hi">Save</button>
+              </div>
+          </form>
+      </div>
+  </div>
 </body>
 
 </html>
