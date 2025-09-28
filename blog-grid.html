@@ -20,7 +20,7 @@
     @scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false">
     <div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i">
       <div class="vd to/4 tc wf yf">
-        <a href="index.html">
+        <a href="index.html" class="flex items-center">
           <img class="om" src="images/logo-light.svg" alt="Logo Light" />
           <img class="xc nm" src="images/logo-dark.svg" alt="Logo Dark" />
         </a>
@@ -43,7 +43,7 @@
       </div>
 
       <div class="vd wo/4 sd qo f ho oo wf yf" :class="{ 'd hh rm sr td ud qg ug jc yh': navigationOpen }">
-        <nav>
+        <nav class="flex items-center">
           <ul class="tc _o sf yo cg ep">
             <li><a href="index.html" class="xl" :class="{ 'mk': page === 'home' }">Home</a></li>
             <li><a href="index.html#features" class="xl">Features</a></li>
@@ -74,6 +74,7 @@
         </nav>
 
         <div class="tc wf ig pb no">
+            <div id="clock" class="text-center text-lg font-bold my-2 mx-4"></div>
           <div class="pc h io pa ra" :class="navigationOpen ? '!-ud-visible' : 'd'">
             <label class="rc ab i">
               <input type="checkbox" :value="darkMode" @change="darkMode = !darkMode" class="pf vd yc uk h r za ab" />
@@ -108,7 +109,7 @@
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-04.gif" alt="Blog" />
+              <img class="w-full" src="images/blog-01.webp" alt="Blog" />
 
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
                 <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
@@ -123,46 +124,20 @@
                 </div>
                 <div class="tc wf ag">
                   <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>6th Nov, 2024</p>
+                  <p>13th Feb, 2022</p>
                 </div>
               </div>
               <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">Mastering Cyber Security: A Comprehensive Guide</a>
+                <a href="blog-single.html">Cyber Security for Your Business</a>
               </h4>
+              <p>In today's digital age, cybersecurity is more important than ever. This post explores the fundamental steps your business can take to protect its data and infrastructure from common cyber threats.</p>
             </div>
           </div>
 
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-05.gif" alt="Blog" />
-
-              <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
-              </div>
-            </div>
-
-            <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>TheBijay</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>6th Nov, 2023</p>
-                </div>
-              </div>
-              <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">The Rise of AI in Modern Web Development</a>
-              </h4>
-            </div>
-          </div>
-
-          <!-- Blog Item -->
-          <div class="animate_top sg vk rm xm">
-            <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-06.gif" alt="Blog" />
+              <img class="w-full" src="images/blog-02.webp" alt="Blog" />
 
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
                 <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
@@ -181,15 +156,16 @@
                 </div>
               </div>
               <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">Top 10 IT Trends to Watch in 2025</a>
+                <a href="blog-single.html">Cloud Computing for IT</a>
               </h4>
+              <p>Cloud computing has revolutionized the IT industry. Learn about the different cloud models (IaaS, PaaS, SaaS) and how they can benefit your business by providing scalability, flexibility, and cost-efficiency.</p>
             </div>
           </div>
 
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-01.png" alt="Blog" />
+              <img class="w-full" src="images/blog-03.webp" alt="Blog" />
 
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
                 <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
@@ -200,77 +176,24 @@
               <div class="tc uf wf ag jq">
                 <div class="tc wf ag">
                   <img src="images/icon-man.svg" alt="User" />
-                  <p>Musharof Chy</p>
+                  <p>TheBijay</p>
                 </div>
                 <div class="tc wf ag">
                   <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>25 Dec, 2025</p>
+                  <p>25 Dec, 2024</p>
                 </div>
               </div>
               <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">Free advertising for your online business</a>
+                <a href="blog-single.html">The Future of IT</a>
               </h4>
+              <p>Artificial Intelligence and Machine Learning are no longer concepts of the future. Discover how AI is being integrated into modern IT systems to automate tasks, analyze data, and drive innovation.</p>
             </div>
           </div>
 
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-02.png" alt="Blog" />
-
-              <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
-              </div>
-            </div>
-
-            <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>Musharof Chy</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>25 Dec, 2025</p>
-                </div>
-              </div>
-              <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">9 simple ways to improve your design skills</a>
-              </h4>
-            </div>
-          </div>
-
-          <!-- Blog Item -->
-          <div class="animate_top sg vk rm xm">
-            <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-03.png" alt="Blog" />
-
-              <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
-              </div>
-            </div>
-
-            <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>Musharof Chy</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>25 Dec, 2025</p>
-                </div>
-              </div>
-              <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">Tips to quickly improve your coding speed.</a>
-              </h4>
-            </div>
-          </div>
-
-          <!-- Blog Item -->
-          <div class="animate_top sg vk rm xm">
-            <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-01.png" alt="Blog" />
+              <img class="w-full" src="images/blog-04.webp" alt="Blog" />
 
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
                 <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
@@ -291,13 +214,14 @@
               <h4 class="ek tj ml il kk wm xl eq lb">
                 <a href="blog-single.html">How to build a strong brand identity</a>
               </h4>
+              <p>As your business grows, so does your network. This guide provides best practices for designing and implementing a scalable and resilient network infrastructure that can support your company's future growth.</p>
             </div>
           </div>
 
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-02.png" alt="Blog" />
+              <img class="w-full" src="images/blog-05.webp" alt="Blog" />
 
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
                 <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
@@ -312,19 +236,20 @@
                 </div>
                 <div class="tc wf ag">
                   <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>6th Nov, 2023</p>
+                  <p>1st March, 2023</p>
                 </div>
               </div>
               <h4 class="ek tj ml il kk wm xl eq lb">
                 <a href="blog-single.html">The importance of UX in web design</a>
               </h4>
+              <p>A great user interface (UI) and user experience (UX) are critical for the success of any software. Learn how a user-centric design approach can lead to higher engagement, satisfaction, and adoption rates.</p>
             </div>
           </div>
 
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm">
             <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-03.png" alt="Blog" />
+              <img class="w-full" src="images/blog-06.webp" alt="Blog" />
 
               <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
                 <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
@@ -339,257 +264,16 @@
                 </div>
                 <div class="tc wf ag">
                   <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>6th Nov, 2023</p>
+                  <p>6th Nov, 2020</p>
                 </div>
               </div>
               <h4 class="ek tj ml il kk wm xl eq lb">
                 <a href="blog-single.html">The future of digital marketing</a>
               </h4>
-            </div>
-          </div>
-
-          <!-- Blog Item -->
-          <div class="animate_top sg vk rm xm">
-            <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-01.png" alt="Blog" />
-
-              <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
-              </div>
-            </div>
-
-            <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>TheBijay</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>6th Nov, 2023</p>
-                </div>
-              </div>
-              <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">The benefits of a mobile-first approach</a>
-              </h4>
-            </div>
-          </div>
-
-          <!-- Blog Item -->
-          <div class="animate_top sg vk rm xm">
-            <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-02.png" alt="Blog" />
-
-              <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
-              </div>
-            </div>
-
-            <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>TheBijay</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>6th Nov, 2023</p>
-                </div>
-              </div>
-              <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">How to create a successful e-commerce store</a>
-              </h4>
-            </div>
-          </div>
-
-          <!-- Blog Item -->
-          <div class="animate_top sg vk rm xm">
-            <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-03.png" alt="Blog" />
-
-              <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
-              </div>
-            </div>
-
-            <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>TheBijay</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>6th Nov, 2023</p>
-                </div>
-              </div>
-              <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">The power of content marketing</a>
-              </h4>
-            </div>
-          </div>
-
-          <!-- Blog Item -->
-          <div class="animate_top sg vk rm xm">
-            <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-01.png" alt="Blog" />
-
-              <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
-              </div>
-            </div>
-
-            <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>TheBijay</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>6th Nov, 2023</p>
-                </div>
-              </div>
-              <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">The role of social media in business</a>
-              </h4>
-            </div>
-          </div>
-
-          <!-- Blog Item -->
-          <div class="animate_top sg vk rm xm">
-            <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-02.png" alt="Blog" />
-
-              <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
-              </div>
-            </div>
-
-            <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>TheBijay</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>6th Nov, 2023</p>
-                </div>
-              </div>
-              <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">How to optimize your website for search engines</a>
-              </h4>
-            </div>
-          </div>
-
-          <!-- Blog Item -->
-          <div class="animate_top sg vk rm xm">
-            <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-03.png" alt="Blog" />
-
-              <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
-              </div>
-            </div>
-
-            <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>TheBijay</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>6th Nov, 2023</p>
-                </div>
-              </div>
-              <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">The benefits of email marketing</a>
-              </h4>
-            </div>
-          </div>
-
-          <!-- Blog Item -->
-          <div class="animate_top sg vk rm xm">
-            <div class="c rc i z-1 pg">
-              <img class="w-full" src="images/blog-01.png" alt="Blog" />
-
-              <div class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10">
-                <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi">Read More</a>
-              </div>
-            </div>
-
-            <div class="yh">
-              <div class="tc uf wf ag jq">
-                <div class="tc wf ag">
-                  <img src="images/icon-man.svg" alt="User" />
-                  <p>TheBijay</p>
-                </div>
-                <div class="tc wf ag">
-                  <img src="images/icon-calender.svg" alt="Calender" />
-                  <p>6th Nov, 2023</p>
-                </div>
-              </div>
-              <h4 class="ek tj ml il kk wm xl eq lb">
-                <a href="blog-single.html">The future of work is remote</a>
-              </h4>
+              <p>Digital marketing is data-driven. This article introduces the key metrics and tools used to measure the performance of your online marketing campaigns, helping you make informed decisions and optimize your strategy.</p>
             </div>
           </div>
         </div>
-
-        <!-- Pagination -->
-        <div class="mb lo bq i ua">
-          <nav>
-            <ul class="tc wf xf bg">
-              <li>
-                <a class="c tc wf xf wd in zc hn rg uj fo wk xm ml il hh rm tl zm yl an" href="#!">
-                  <svg class="th lm ml il" width="8" height="14" viewBox="0 0 8 14" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M2.93884 6.99999L7.88884 11.95L6.47484 13.364L0.11084 6.99999L6.47484 0.635986L7.88884 2.04999L2.93884 6.99999Z" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a class="c tc wf xf wd in zc hn rg uj fo wk xm ml il hh rm tl zm yl an" href="#!">
-                  2
-                </a>
-              </li>
-              <li>
-                <a class="c tc wf xf wd in zc hn rg uj fo wk xm ml il hh rm tl zm yl an" href="#!">
-                  3
-                </a>
-              </li>
-              <li>
-                <a class="c tc wf xf wd in zc hn rg uj fo wk xm ml il hh rm tl zm yl an" href="#!">
-                  4
-                </a>
-              </li>
-              <li>
-                <a class="c tc wf xf wd in zc hn rg uj fo wk xm ml il hh rm tl zm yl an" href="#!">
-                  ...
-                </a>
-              </li>
-              <li>
-                <a class="c tc wf xf wd in zc hn rg uj fo wk xm ml il hh rm tl zm yl an" href="#!">
-                  12
-                </a>
-              </li>
-              <li>
-                <a class="c tc wf xf wd in zc hn rg uj fo wk xm ml il hh rm tl zm yl an" href="#!">
-                  <svg class="th lm ml il" width="8" height="14" viewBox="0 0 8 14" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M5.06067 7.00001L0.110671 2.05001L1.52467 0.636014L7.88867 7.00001L1.52467 13.364L0.110672 11.95L5.06067 7.00001Z"
-                      fill="#fefdfo" />
-                  </svg>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <!-- Pagination -->
       </div>
     </section>
     <!-- ===== Blog Grid End ===== -->
@@ -815,6 +499,7 @@
 
   <!-- ====== Back To Top End ===== -->
   <script defer src="bundle.js"></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>

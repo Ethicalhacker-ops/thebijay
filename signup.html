@@ -20,7 +20,7 @@
     @scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false">
     <div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i">
       <div class="vd to/4 tc wf yf">
-        <a href="index.html">
+        <a href="index.html" class="flex items-center">
           <img class="om" src="images/logo-light.svg" alt="Logo Light" />
           <img class="xc nm" src="images/logo-dark.svg" alt="Logo Dark" />
         </a>
@@ -43,7 +43,7 @@
       </div>
 
       <div class="vd wo/4 sd qo f ho oo wf yf" :class="{ 'd hh rm sr td ud qg ug jc yh': navigationOpen }">
-        <nav>
+        <nav class="flex items-center">
           <ul class="tc _o sf yo cg ep">
             <li><a href="index.html" class="xl" :class="{ 'mk': page === 'home' }">Home</a></li>
             <li><a href="index.html#features" class="xl">Features</a></li>
@@ -77,6 +77,7 @@
         </nav>
 
         <div class="tc wf ig pb no">
+            <div id="clock" class="text-center text-lg font-bold my-2 mx-4"></div>
           <div class="pc h io pa ra" :class="navigationOpen ? '!-ud-visible' : 'd'">
             <label class="rc ab i">
               <input type="checkbox" :value="darkMode" @change="darkMode = !darkMode" class="pf vd yc uk h r za ab" />
@@ -185,7 +186,7 @@
           </span>
         </div>
 
-        <form class="sb" action="#!" method="#!">
+        <form id="signup-form" class="sb">
           <div class="wb">
             <label class="rc kk wm vb" for="fullname">Full name</label>
             <input type="text" name="fullname" id="fullname" placeholder="Devid Wonder"
@@ -201,6 +202,12 @@
           <div class="wb">
             <label class="rc kk wm vb" for="password">Password</label>
             <input type="password" name="password" id="password" placeholder="**************"
+              class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40" />
+          </div>
+
+          <div class="wb">
+            <label class="rc kk wm vb" for="confirm-password">Confirm Password</label>
+            <input type="password" name="confirm-password" id="confirm-password" placeholder="**************"
               class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40" />
           </div>
 
@@ -403,6 +410,7 @@
 
   <!-- ====== Back To Top End ===== -->
   <script defer src="bundle.js"></script>
+  <script src="js/main.js"></script>
   <script src="auth.js"></script>
 </body>
 
