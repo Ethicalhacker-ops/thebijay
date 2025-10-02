@@ -1,28 +1,464 @@
-# Bijay Dada
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jay Prasad | Official Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease;
+        }
+        
+        .loading-content {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+        }
+        
+        .loading-logo {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .loading-text {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .progress-container {
+            width: 80%;
+            max-width: 500px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+        
+        .progress-percent {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .loading-info {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Main Content */
+        #main-content {
+            display: none;
+            min-height: 100vh;
+        }
+        
+        .header {
+            padding: 30px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--light);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .hero {
+            padding: 100px 5%;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .features {
+            padding: 100px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .time-section {
+            padding: 80px 5%;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .time-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--light);
+        }
+        
+        .time-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        
+        .time-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .time-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .time-label {
+            font-size: 1rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .footer {
+            padding: 50px 5%;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+            color: var(--gray);
+        }
+        
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .time-display {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-globe"></i>
+            </div>
+            <div class="loading-text">Welcome to Jay Prasad</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="progress-percent" id="progress-percent">0%</div>
+            <div class="loading-info">
+                <p>Email: itadmin@jayprasad.com.np</p>
+                <p>Copyright ©️ The Bi Jay - All rights reserved <span id="current-year"></span></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div id="main-content">
+        <header class="header">
+            <div class="logo">Jay<span>Prasad</span></div>
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Services</a>
+                <a href="#">Portfolio</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+        </header>
+        
+        <section class="hero">
+            <h1>Creating Digital Experiences That Inspire</h1>
+            <p>We transform ideas into powerful digital solutions that drive growth and engagement for businesses worldwide.</p>
+            <a href="https://jayprasad.com.np/index1.html" class="cta-button" target="_blank">Visit Our Official Website</a>
+        </section>
+        
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>Creative Design</h3>
+                <p>Stunning visual designs that capture attention and communicate your brand's message effectively.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Web Development</h3>
+                <p>Robust, scalable web applications built with the latest technologies and best practices.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Digital Marketing</h3>
+                <p>Data-driven strategies to increase your online visibility and drive measurable results.</p>
+            </div>
+        </section>
+        
+        <section class="time-section">
+            <h2>Current Date & Time</h2>
+            <div class="time-display">
+                <div class="time-item">
+                    <div class="time-value" id="hours">00</div>
+                    <div class="time-label">Hour</div>
+                </div>
+                <div class="time-item">
+                    <div class="time-value" id="minutes">00</div>
+                    <div class="time-label">Minute</div>
+                </div>
+                <div class="time-item">
+                    <div class="time-value" id="seconds">00</div>
+                    <div class="time-label">Second</div>
+                </div>
+                <div class="time-item">
+                    <div class="time-value" id="day">00</div>
+                    <div class="time-label">Day</div>
+                </div>
+                <div class="time-item">
+                    <div class="time-value" id="month">00</div>
+                    <div class="time-label">Month</div>
+                </div>
+                <div class="time-item">
+                    <div class="time-value" id="year">0000</div>
+                    <div class="time-label">Year</div>
+                </div>
+            </div>
+            
+            <a href="https://jayprasad.com.np/index1.html" class="cta-button" target="_blank">Explore Our Services</a>
+        </section>
+        
+        <footer class="footer">
+            <p>Email: <a href="mailto:itadmin@jayprasad.com.np">itadmin@jayprasad.com.np</a></p>
+            <p>Copyright ©️ The Bi Jay - All rights reserved <span id="footer-year"></span></p>
+        </footer>
+    </div>
 
-A modern cloud-based IT consultant portal built with Cloudflare Workers.
-
-## Features
-- User authentication (login/signup)
-- Session management
-- File upload and management
-- Project management
-- Responsive dashboard
-- White/light theme toggle
-
-## Setup
-1. Clone this repository
-2. Deploy to Cloudflare Workers
-3. Configure required KV namespaces:
-   - SESSIONS
-   - USERS
-   - FILES
-   - PROJECTS
-
-## Support
-For support, contact:
-- Email: support@jayprasad.com.np
-- Admin: admin@jayprasad.com.np
-
-## License
-Copyright (c) Jay Prasad Majhi
+    <script>
+        // Loading screen functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.getElementById('main-content');
+            const progressBar = document.getElementById('progress-bar');
+            const progressPercent = document.getElementById('progress-percent');
+            const currentYear = document.getElementById('current-year');
+            const footerYear = document.getElementById('footer-year');
+            
+            // Set current year
+            const year = new Date().getFullYear();
+            currentYear.textContent = year;
+            footerYear.textContent = year;
+            
+            // Simulate loading progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 5) + 1;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    // Show main content after a brief delay
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                            mainContent.style.display = 'block';
+                        }, 800);
+                    }, 500);
+                }
+                
+                progressBar.style.width = `${progress}%`;
+                progressPercent.textContent = `${progress}%`;
+            }, 100);
+            
+            // Update time display
+            function updateTime() {
+                const now = new Date();
+                
+                document.getElementById('hours').textContent = String(now.getHours()).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(now.getMinutes()).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(now.getSeconds()).padStart(2, '0');
+                document.getElementById('day').textContent = String(now.getDate()).padStart(2, '0');
+                document.getElementById('month').textContent = String(now.getMonth() + 1).padStart(2, '0');
+                document.getElementById('year').textContent = now.getFullYear();
+            }
+            
+            // Update time immediately and then every second
+            updateTime();
+            setInterval(updateTime, 1000);
+        });
+    </script>
+</body>
+</html>
