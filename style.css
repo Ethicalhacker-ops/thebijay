@@ -2585,3 +2585,20 @@ h1,  h2,  h3,  h4,  h5,  h6{
   }
 }
 
+/* Custom styles for team section hover effect */
+.team-item-hover-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.c:hover .team-item-hover-content {
+  opacity: 1;
+}
