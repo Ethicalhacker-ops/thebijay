@@ -8,6 +8,7 @@
   <title>The Bijay - It Solutions</title>
   <link rel="icon" href="favicon.ico">
   <link href="style.css" rel="stylesheet">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
@@ -995,48 +996,22 @@
           </div>
 
           <div class="animate_top w-full nn/5 vo/3 vk sg hh sm yh tq">
-            <form id="contact-form">
-              <div class="tc sf yo ap zf ep qb">
-                <div class="vd to/2">
-                  <label class="rc ac" for="fullname">Full name</label>
-                  <input type="text" name="fullname" id="fullname" placeholder="John Doe"
-                    class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi" required />
-                </div>
-
-                <div class="vd to/2">
-                  <label class="rc ac" for="email">Email address</label>
-                  <input type="email" name="email" id="email" placeholder="example@gmail.com"
-                    class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi" required />
-                </div>
-              </div>
-
-              <div class="tc sf yo ap zf ep qb">
-                <div class="vd to/2">
-                  <label class="rc ac" for="phone">Phone number</label>
-                  <input type="tel" name="phone" id="phone" placeholder="+1 (555) 123-4567"
-                    class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi" />
-                </div>
-
-                <div class="vd to/2">
-                  <label class="rc ac" for="subject">Subject</label>
-                  <input type="text" name="subject" id="subject" placeholder="Type your subject"
-                    class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi" required />
-                </div>
+            <form id="contact-form-index" action="https://formspree.io/f/xkgqzdlk">
+              <div class="fb">
+                <label class="rc ac" for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required placeholder="Your email address" class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi" />
               </div>
 
               <div class="fb">
-                <label class="rc ac" for="message">Message</label>
-                <textarea placeholder="Message" rows="4" name="message" id="message"
-                  class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 ci" required></textarea>
+                <label class="rc ac" for="message">Your Message:</label>
+                <textarea id="message" name="message" required rows="4" placeholder="Your message" class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 ci"></textarea>
               </div>
 
-              <div class="g-recaptcha" data-sitekey="your-site-key"></div>
-
-              <div class="tc xf">
-                <button type="submit" class="vc rg lk gh ml il hi gi _l">Send Message</button>
+              <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+              <div class="tc xf mt-4">
+                <button type="submit" class="vc rg lk gh ml il hi gi _l">Send</button>
               </div>
             </form>
-            <div id="form-messages" class="mt-4 text-center"></div>
           </div>
         </div>
       </div>

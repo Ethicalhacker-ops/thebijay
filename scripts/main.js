@@ -72,31 +72,67 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Contact form validation
-const contactForm = document.getElementById('contact-form');
-const formMessages = document.getElementById('form-messages');
+// Formspree form handling with AJAX
+document.addEventListener('DOMContentLoaded', () => {
+    const forms = document.querySelectorAll('form[action^="https://formspree.io/"]');
 
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    forms.forEach(form => {
+        const statusDiv = document.createElement('div');
+        statusDiv.className = 'form-status mt-4 text-center';
+        form.appendChild(statusDiv);
 
-        const formData = new FormData(this);
-        const name = formData.get('fullname');
-        const email = formData.get('email');
-        const subject = formData.get('subject');
-        const message = formData.get('message');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-        if (!name || !email || !subject || !message) {
-            formMessages.textContent = 'All fields are required.';
-            formMessages.style.color = 'red';
-            return;
-        }
+            const email = form.querySelector('input[name="email"]');
+            const message = form.querySelector('textarea[name="message"]');
+            const recaptcha = form.querySelector('.g-recaptcha');
+            let errors = [];
 
-        // Simulate form submission
-        setTimeout(() => {
-            formMessages.textContent = 'Your message has been sent successfully!';
-            formMessages.style.color = 'green';
-            contactForm.reset();
-        }, 1000);
+            // Validation
+            if (!email.value || !message.value) {
+                errors.push('Please fill out all required fields.');
+            }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email.value && !emailRegex.test(email.value)) {
+                errors.push('Please enter a valid email address.');
+            }
+            if (recaptcha && grecaptcha.getResponse().length === 0) {
+                errors.push('Please complete the reCAPTCHA.');
+            }
+
+            if (errors.length > 0) {
+                statusDiv.innerHTML = `<p style="color: red;">${errors.join('<br>')}</p>`;
+                return;
+            }
+
+            const data = new FormData(form);
+            statusDiv.innerHTML = '<p>Sending...</p>';
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    statusDiv.innerHTML = '<p style="color: green;">✅ Thank you! Your message has been sent successfully.</p>';
+                    form.reset();
+                    if(recaptcha) grecaptcha.reset();
+                } else {
+                    const responseData = await response.json();
+                    if (Object.hasOwn(responseData, 'errors')) {
+                        statusDiv.innerHTML = `<p style="color: red;">${responseData.errors.map(error => error.message).join(', ')}</p>`;
+                    } else {
+                        statusDiv.innerHTML = '<p style="color: red;">Oops! There was a problem submitting your form.</p>';
+                    }
+                }
+            } catch (error) {
+                statusDiv.innerHTML = '<p style="color: red;">Oops! There was a problem submitting your form.</p>';
+            }
+        });
     });
-}
+});
