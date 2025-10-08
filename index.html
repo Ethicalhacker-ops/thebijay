@@ -11,10 +11,8 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
-<body x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
-  x-init="
-         darkMode = JSON.parse(localStorage.getItem('darkMode'));
-         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+<body x-data="{ page: 'home', 'darkMode': localStorage.getItem('darkMode') === 'true' || false, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
+  x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))"
   :class="{'b eh': darkMode === true}">
   <!-- ===== Header Start ===== -->
   <header class="g s r vd ya cj" :class="{ 'hh sm _k dj bl ll' : stickyMenu }"
@@ -243,7 +241,7 @@
           <!-- Team Item -->
           <div class="animate_top rj">
             <div class="c i pg z-1">
-              <img class="vd" src="images/team-01.png" alt="Jay Prasad Majhi" />
+              <img class="vd" src="assets/blog-01.jpg" alt="Jay Prasad Majhi" />
               <div class="team-item-hover-content">
                 <h4 class="text-lg font-semibold">Full Stack Developer</h4>
                 <a href="mailto:it@jayprasad.com.np" class="inline-block mt-2">it@jayprasad.com.np</a>
@@ -257,7 +255,7 @@
           <!-- Team Item -->
           <div class="animate_top rj">
             <div class="c i pg z-1">
-              <img class="vd" src="images/team-02.png" alt="Avinash Acharya" />
+              <img class="vd" src="assets/blog-02.jpg" alt="Avinash Acharya" />
               <div class="team-item-hover-content">
                 <h4 class="text-lg font-semibold">Backend Developer</h4>
                 <a href="mailto:backend@technologist.com" class="inline-block mt-2">backend@technologist.com</a>
@@ -270,7 +268,7 @@
           <!-- Team Item -->
           <div class="animate_top rj">
             <div class="c i pg z-1">
-              <img class="vd" src="images/team-03.png" alt="Nabin Dhungel" />
+              <img class="vd" src="assets/blog-03.jpg" alt="Nabin Dhungel" />
               <div class="team-item-hover-content">
                 <h4 class="text-lg font-semibold">Front End Developer</h4>
                 <a href="mailto:frontend@technologist.com" class="inline-block mt-2">frontend@technologist.com</a>
@@ -561,7 +559,7 @@
                   <span class="rc je md/2 mh yg h q p"></span>
 
                   <div class="tc sf rn tn un zf dp">
-                    <img class="bf" src="images/testimonial.png" alt="Client Testimonial" />
+                    <img class="bf" src="assets/blog-04.jpg" alt="Client Testimonial" />
 
                     <div>
                       <img src="images/icon-quote.svg" alt="Quote" />
@@ -710,6 +708,7 @@
       </div>
 
       <div class="bb ye ki xn vq jb jo" id="blog-container">
+      <div class="bb ye ki xn vq jb jo" id="blog-container">
         <div class="wc qf pn xo zf iq">
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm" data-category="cyber-security">
@@ -794,8 +793,7 @@
               <p>Artificial Intelligence and Machine Learning are no longer concepts of the future. Discover how AI is being integrated into modern IT systems to automate tasks, analyze data, and drive innovation.</p>
             </div>
           </div>
-        </div>
-        <div class="wc qf pn xo zf iq">
+
           <!-- Blog Item -->
           <div class="animate_top sg vk rm xm" data-category="it-tips">
             <div class="c rc i z-1 pg">
