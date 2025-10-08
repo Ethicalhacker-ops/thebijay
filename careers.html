@@ -10,10 +10,8 @@
   <link href="style.css" rel="stylesheet">
 </head>
 
-<body x-data="{ page: 'careers', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
-  x-init="
-         darkMode = JSON.parse(localStorage.getItem('darkMode'));
-         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+<body x-data="{ page: 'careers', 'darkMode': localStorage.getItem('darkMode') === 'true' || false, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
+  x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))"
   :class="{'b eh': darkMode === true}">
   <!-- ===== Header Start ===== -->
   <header class="g s r vd ya cj" :class="{ 'hh sm _k dj bl ll' : stickyMenu }"
