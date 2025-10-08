@@ -22,8 +22,8 @@
     <div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i">
       <div class="vd to/4 tc wf yf">
         <a href="index.html" class="flex items-center">
-          <img class="om" src="images/logo-light.svg" alt="Logo Light" />
-          <img class="xc nm" src="images/logo-dark.svg" alt="Logo Dark" />
+          <img class="om" src="images/logo-light.svg" alt="Logo Light" loading="lazy" />
+          <img class="xc nm" src="images/logo-dark.svg" alt="Logo Dark" loading="lazy" />
         </a>
 
         <!-- Hamburger Toggle BTN -->
@@ -49,7 +49,7 @@
             <li><a href="index.html" class="xl" :class="{ 'mk': page === 'home' }">Home</a></li>
             <li><a href="index.html#features" class="xl">Features</a></li>
             <li class="c i" x-data="{ dropdown: false }">
-              <a href="#!" class="xl tc wf yf bg" @click.prevent="dropdown = !dropdown"
+              <a href="#" onclick="return false;" class="xl tc wf yf bg" @click.prevent="dropdown = !dropdown"
                 :class="{ 'mk': page === 'blog-grid' || page === 'blog-single' || page === 'signin' || page === 'signup' || page === '404' }">
                 Pages
 
@@ -87,7 +87,7 @@
                   fill="" />
               </svg>
               <!-- Icon Sun -->
-              <img class="xc nm" src="images/icon-moon.svg" alt="Moon" />
+              <img class="xc nm" src="images/icon-moon.svg" alt="Moon" loading="lazy" />
             </label>
           </div>
 
@@ -111,7 +111,7 @@
             <div
               class="animate_top rounded-md shadow-solid-13 bg-white dark:bg-blacksection border border-stroke dark:border-strokedark p-7.5 md:p-10">
               <!-- IT-related images should be used in this section -->
-              <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="A person working on a laptop" />
+              <img src="assets/blog-01.jpg" alt="Cyber Security for Your Business" loading="lazy" />
 
               <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">Cyber Security for Your Business</h2>
 
@@ -130,8 +130,8 @@
               </p>
 
               <div class="wc qf pn dg cb">
-                <img src="https://images.unsplash.com/photo-1517694712202-1428bc38aa4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Cloud computing infrastructure" />
-                <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="Artificial intelligence concept" />
+                <img src="assets/blog-02.jpg" alt="Cloud computing infrastructure" loading="lazy" />
+                <img src="assets/blog-03.jpg" alt="Artificial intelligence concept" loading="lazy" />
               </div>
 
               <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb qb">Key Takeaways</h2>
@@ -144,7 +144,7 @@
                   <p class="sj kk wm tb">Share On:</p>
                 </li>
                 <li>
-                  <a href="#!" class="tc wf xf yd ad rg ml il ih wk">
+                  <a href="#" onclick="return false;" class="tc wf xf yd ad rg ml il ih wk">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_47_28)">
                         <path
@@ -160,7 +160,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="tc wf xf yd ad rg ml il jh wk">
+                  <a href="#" onclick="return false;" class="tc wf xf yd ad rg ml il jh wk">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_47_47)">
                         <path
@@ -176,7 +176,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="tc wf xf yd ad rg ml il kh wk">
+                  <a href="#" onclick="return false;" class="tc wf xf yd ad rg ml il kh wk">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_47_50)">
                         <path
@@ -192,7 +192,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="tc wf xf yd ad rg ml il lh wk">
+                  <a href="#" onclick="return false;" class="tc wf xf yd ad rg ml il lh wk">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_47_53)">
                         <path
@@ -235,19 +235,19 @@
 
               <ul>
                 <li class="ql vb du-ease-in-out il xl">
-                  <a href="#!">Blog</a>
+                  <a href="#" onclick="return false;">Blog</a>
                 </li>
                 <li class="ql vb du-ease-in-out il xl">
-                  <a href="#!">Events</a>
+                  <a href="#" onclick="return false;">Events</a>
                 </li>
                 <li class="ql vb du-ease-in-out il xl">
-                  <a href="#!">Grids</a>
+                  <a href="#" onclick="return false;">Grids</a>
                 </li>
                 <li class="ql vb du-ease-in-out il xl">
-                  <a href="#!">News</a>
+                  <a href="#" onclick="return false;">News</a>
                 </li>
                 <li class="ql vb du-ease-in-out il xl">
-                  <a href="#!">Rounded</a>
+                  <a href="#" onclick="return false;">Rounded</a>
                 </li>
               </ul>
             </div>
@@ -257,21 +257,21 @@
 
               <div>
                 <div class="tc fg 2xl:ud-gap-6 qb">
-                  <img src="images/blog-small-01.png" alt="Blog" />
+                    <img src="images/blog-small-01.png" alt="The Rise of AI in Modern Web Development" loading="lazy" />
                   <h5 class="wj kk wm xl bn ml il">
-                    <a href="#!">The Rise of AI in Modern Web Development</a>
+                    <a href="#" onclick="return false;">The Rise of AI in Modern Web Development</a>
                   </h5>
                 </div>
                 <div class="tc fg 2xl:ud-gap-6 qb">
-                  <img src="images/blog-small-02.png" alt="Blog" />
+                    <img src="images/blog-small-02.png" alt="Top 10 IT Trends to Watch in 2025" loading="lazy" />
                   <h5 class="wj kk wm xl bn ml il">
-                    <a href="#!">Top 10 IT Trends to Watch in 2025</a>
+                    <a href="#" onclick="return false;">Top 10 IT Trends to Watch in 2025</a>
                   </h5>
                 </div>
                 <div class="tc fg 2xl:ud-gap-6">
-                  <img src="images/blog-small-03.png" alt="Blog" />
+                    <img src="images/blog-small-03.png" alt="Cloud Computing for IT" loading="lazy" />
                   <h5 class="wj kk wm xl bn ml il">
-                    <a href="#!">Cloud Computing for IT</a>
+                    <a href="#" onclick="return false;">Cloud Computing for IT</a>
                   </h5>
                 </div>
               </div>
@@ -285,8 +285,6 @@
     <!-- ===== CTA Start ===== -->
     <section class="i pg gh ji">
       <!-- Bg Shape -->
-      <img class="h p q" src="images/shape-16.svg" alt="Bg Shape" />
-
       <div class="bb ye i z-10 ki xn dr">
         <div class="tc uf sn tn un gg">
           <div class="animate_left to/2">
@@ -298,7 +296,7 @@
             </p>
           </div>
           <div class="animate_right bf">
-            <a href="#!" class="vc ek kk hh rg ol il cm gi hi">
+            <a href="#" onclick="return false;" class="vc ek kk hh rg ol il cm gi hi">
               Get Started Now
             </a>
           </div>
@@ -324,7 +322,7 @@
 
             <ul class="tc wf cg">
               <li>
-                <a href="#!">
+                <a href="#" onclick="return false;">
                   <svg class="vh ul cl il" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_48_1499)">
@@ -341,7 +339,7 @@
                 </a>
               </li>
               <li>
-                <a href="#!">
+                <a href="#" onclick="return false;">
                   <svg class="vh ul cl il" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_48_1502)">
@@ -358,7 +356,7 @@
                 </a>
               </li>
               <li>
-                <a href="#!">
+                <a href="#" onclick="return false;">
                   <svg class="vh ul cl il" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_48_1505)">
@@ -375,7 +373,7 @@
                 </a>
               </li>
               <li>
-                <a href="#!">
+                <a href="#" onclick="return false;">
                   <svg class="vh ul cl il" width="24" height="24" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_48_1508)">
@@ -430,9 +428,7 @@
 
             <div class="animate_top">
               <h4 class="kk wm tj ec">Email</h4>
-              <p><a href="mailto:info@jayprasad.com.np">info@jayprasad.com.np</a></p>
-              <p><a href="mailto:inquiry@jayprasad.com.np">inquiry@jayprasad.com.np</a></p>
-              <p><a href="mailto:itadmin@jayprasad.com.np">itadmin@jayprasad.com.np</a></p>
+              <p><a href="mailto:helpdesk@jayprasad.com.np">helpdesk@jayprasad.com.np</a></p>
             </div>
 
             <div class="animate_top">
@@ -477,15 +473,14 @@
       <div class="bh ch pm tc uf sf yo wf xf ap cg fp bj">
         <div class="animate_top">
           <ul class="tc wf gg">
-            <li><a href="#!" class="xl">English</a></li>
-            <li><a href="#!" class="xl">Privacy Policy</a></li>
-            <li><a href="#!" class="xl">Support</a></li>
+            <li><a href="#" onclick="return false;" class="xl">English</a></li>
+            <li><a href="#" onclick="return false;" class="xl">Privacy Policy</a></li>
+            <li><a href="#" onclick="return false;" class="xl">Support</a></li>
           </ul>
         </div>
 
         <div class="animate_top">
-          <p>&copy; 2025 Bijay. All rights reserved. Distributed by <a href="https://jayprasad.com.np" rel="nofollow"
-              target="_blank">TheBijay</a></p>
+          <p>&copy; 2025 Jay Prasad. All rights reserved.</p>
         </div>
       </div>
       <!-- Footer Bottom -->
@@ -504,7 +499,7 @@
   </button>
 
   <!-- ====== Back To Top End ===== -->
-  <script defer src="bundle.js"></script>
+  <script src="scripts/main.js" defer></script>
 </body>
 
 </html>

@@ -48,7 +48,7 @@
             <li><a href="index.html" class="xl" :class="{ 'mk': page === 'home' }">Home</a></li>
             <li><a href="index.html#features" class="xl">Features</a></li>
             <li class="c i" x-data="{ dropdown: false }">
-              <a href="#!" class="xl tc wf yf bg" @click.prevent="dropdown = !dropdown"
+              <a href="#" onclick="return false;" class="xl tc wf yf bg" @click.prevent="dropdown = !dropdown"
                 :class="{ 'mk': page === 'blog-grid' || page === 'blog-single' || page === 'signin' || page === 'signup' || page === '404' }">
                 Pages
 
@@ -109,18 +109,9 @@
       <div class="bb ye ki xn vq jb jo">
         <div class="animate_top sg vk rm xm">
           <div class="w-full">
-            <h1 class="fk vj zp or kk wm wb">About Our Company</h1>
-            <p class="fq">We are a leading provider of IT solutions, specializing in web development, cybersecurity, and digital marketing. Our mission is to empower businesses with the tools and expertise they need to succeed in the digital age. We are a team of passionate and dedicated professionals who are committed to delivering high-quality solutions that exceed our clients' expectations. We believe in building long-term partnerships with our clients, and we are dedicated to helping them achieve their goals.</p>
-            <p class="fq">Our company was founded on the principles of innovation, integrity, and excellence. We are committed to staying at the forefront of technology and providing our clients with the best possible solutions. We are proud of the work we do, and we are dedicated to making a positive impact on the businesses we serve. We believe that our success is measured by the success of our clients, and we are committed to helping them achieve their full potential.</p>
-
-            <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">Our Mission</h2>
-            <p>Our mission is to provide our clients with the best possible IT solutions to help them achieve their business goals. We are committed to delivering high-quality products and services that are tailored to the unique needs of each of our clients. We believe in building long-term relationships with our clients, and we are dedicated to providing them with the support and guidance they need to succeed. We are passionate about what we do, and we are committed to making a positive impact on the businesses we serve.</p>
-
-            <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">Our Vision</h2>
-            <p>Our vision is to be a leading provider of IT solutions, known for our innovation, our commitment to quality, and our dedication to customer satisfaction. We want to be a company that our clients can trust and rely on, and we want to be a place where our employees are proud to work. We are committed to building a company that is both successful and sustainable, and we are dedicated to making a positive impact on the world.</p>
-
-            <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">Our Values</h2>
-            <p>Our values are the foundation of our company. They guide everything we do, from the way we work with our clients to the way we treat our employees. We believe in integrity, honesty, and transparency, and we are committed to upholding the highest ethical standards. We believe in teamwork, collaboration, and mutual respect, and we are dedicated to creating a positive and inclusive work environment. We believe in innovation, creativity, and continuous improvement, and we are committed to staying at the forefront of technology.</p>
+            <h1 class="fk vj zp or kk wm wb">About Jay Prasad Majhi</h1>
+            <p class="fq">Jay Prasad Majhi is a distinguished IT professional and web developer with a deep passion for technology and a commitment to excellence. With extensive expertise in front-end development and system administration, Jay focuses on creating high-performing, user-friendly websites and applications that drive business growth. His approach combines technical proficiency with a dedication to understanding client needs, ensuring that every project is not only technologically sound but also perfectly aligned with the client's vision.</p>
+            <p class="fq">Throughout his career, Jay has been driven by a mission to deliver innovative digital solutions that empower businesses to thrive in an ever-evolving online landscape. He believes in building strong, long-term partnerships with his clients, offering the support and guidance necessary to navigate the complexities of the digital world. His work is founded on the principles of integrity, innovation, and a relentless pursuit of quality, making him a trusted partner for businesses seeking to enhance their digital presence.</p>
           </div>
         </div>
       </div>
@@ -194,7 +185,7 @@
                 </a>
               </li>
               <li>
-                <a href="#!">
+                <a href="#" onclick="return false;">
                   <svg class="vh ul cl il" width="24" height="24" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_48_1508)">
@@ -249,9 +240,7 @@
 
             <div class="animate_top">
               <h4 class="kk wm tj ec">Email</h4>
-              <p><a href="mailto:info@jayprasad.com.np">info@jayprasad.com.np</a></p>
-              <p><a href="mailto:inquiry@jayprasad.com.np">inquiry@jayprasad.com.np</a></p>
-              <p><a href="mailto:itadmin@jayprasad.com.np">itadmin@jayprasad.com.np</a></p>
+              <p><a href="mailto:helpdesk@jayprasad.com.np">helpdesk@jayprasad.com.np</a></p>
             </div>
 
             <div class="animate_top">
@@ -296,7 +285,7 @@
         </div>
 
         <div class="animate_top">
-          <p>&copy; 2025 Bijay. All rights reserved. Distributed by <a href="https://thebijay.com" rel="nofollow" target="_blank">TheBijay</a></p>
+          <p>&copy; 2025 Jay Prasad. All rights reserved.</p>
         </div>
       </div>
       <!-- Footer Bottom -->
@@ -315,7 +304,7 @@
   </button>
 
   <!-- ====== Back To Top End ===== -->
-  <script defer src="bundle.js"></script>
+  <script src="scripts/main.js" defer></script>
 </body>
 
 </html>
