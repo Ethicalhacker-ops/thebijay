@@ -48,7 +48,7 @@
             <li><a href="index.html" class="xl" :class="{ 'mk': page === 'home' }">Home</a></li>
             <li><a href="index.html#features" class="xl">Features</a></li>
             <li class="c i" x-data="{ dropdown: false }">
-              <a href="#!" class="xl tc wf yf bg" @click.prevent="dropdown = !dropdown"
+              <a href="#" onclick="return false;" class="xl tc wf yf bg" @click.prevent="dropdown = !dropdown"
                 :class="{ 'mk': page === 'blog-grid' || page === 'blog-single' || page === 'signin' || page === 'signup' || page === '404' }">
                 Pages
 
@@ -123,7 +123,7 @@
                   <span class="sc ak kk wm">/per month</span>
                 </div>
                 <p class="ur dc">No credit card required</p>
-                <a href="#!" class="ek rg lk ml il gi ri mh tl">Try for free</a>
+                <a href="#" onclick="return false;" class="ek rg lk ml il gi ri mh tl">Try for free</a>
                 <ul class="tc sf bg ob fb">
                   <li>400 GB Storage</li>
                   <li>Unlimited Photos & Videos</li>
@@ -139,7 +139,7 @@
                   <span class="sc ak kk wm">/per month</span>
                 </div>
                 <p class="ur dc">No credit card required</p>
-                <a href="#!" class="ek rg lk ml il gi ri gh sl">Try for free</a>
+                <a href="#" onclick="return false;" class="ek rg lk ml il gi ri gh sl">Try for free</a>
                 <ul class="tc sf bg ob fb">
                   <li>400 GB Storage</li>
                   <li>Unlimited Photos & Videos</li>
@@ -155,7 +155,7 @@
                   <span class="sc ak kk wm">/per month</span>
                 </div>
                 <p class="ur dc">No credit card required</p>
-                <a href="#!" class="ek rg lk ml il gi ri mh tl">Try for free</a>
+                <a href="#" onclick="return false;" class="ek rg lk ml il gi ri mh tl">Try for free</a>
                 <ul class="tc sf bg ob fb">
                   <li>400 GB Storage</li>
                   <li>Unlimited Photos & Videos</li>
@@ -237,7 +237,7 @@
                 </a>
               </li>
               <li>
-                <a href="#!">
+                <a href="#" onclick="return false;">
                   <svg class="vh ul cl il" width="24" height="24" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_48_1508)">
@@ -292,9 +292,7 @@
 
             <div class="animate_top">
               <h4 class="kk wm tj ec">Email</h4>
-              <p><a href="mailto:info@jayprasad.com.np">info@jayprasad.com.np</a></p>
-              <p><a href="mailto:inquiry@jayprasad.com.np">inquiry@jayprasad.com.np</a></p>
-              <p><a href="mailto:itadmin@jayprasad.com.np">itadmin@jayprasad.com.np</a></p>
+              <p><a href="mailto:helpdesk@jayprasad.com.np">helpdesk@jayprasad.com.np</a></p>
             </div>
 
             <div class="animate_top">
@@ -339,7 +337,7 @@
         </div>
 
         <div class="animate_top">
-          <p>&copy; 2025 Bijay. All rights reserved. Distributed by <a href="https://thebijay.com" rel="nofollow" target="_blank">TheBijay</a></p>
+          <p>&copy; 2025 Jay Prasad. All rights reserved.</p>
         </div>
       </div>
       <!-- Footer Bottom -->
@@ -358,7 +356,7 @@
   </button>
 
   <!-- ====== Back To Top End ===== -->
-  <script defer src="bundle.js"></script>
+  <script src="scripts/main.js"></script>
 </body>
 
 </html>

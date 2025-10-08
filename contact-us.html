@@ -49,7 +49,7 @@
             <li><a href="index.html" class="xl" :class="{ 'mk': page === 'home' }">Home</a></li>
             <li><a href="index.html#features" class="xl">Features</a></li>
             <li class="c i" x-data="{ dropdown: false }">
-              <a href="#!" class="xl tc wf yf bg" @click.prevent="dropdown = !dropdown"
+              <a href="#" onclick="return false;" class="xl tc wf yf bg" @click.prevent="dropdown = !dropdown"
                 :class="{ 'mk': page === 'blog-grid' || page === 'blog-single' || page === 'signin' || page === 'signup' || page === '404' }">
                 Pages
 
@@ -111,27 +111,17 @@
             <p class="fq">We would love to hear from you. Whether you have a question about our products and services, or you just want to say hello, we are here to help. You can reach us by email, phone, or by filling out the contact form below. We will do our best to respond to your inquiry as soon as possible. We value your feedback and we are always looking for ways to improve our products and services.</p>
             <p class="fq">Our team is available to assist you from Monday to Friday, 9am to 5pm EST. We are committed to providing you with the best possible customer service, and we will do everything we can to ensure that you have a positive experience with our company. We look forward to hearing from you and learning more about how we can help you achieve your goals.</p>
 
-            <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">Contact Information</h2>
-            <p><strong>Email:</strong> <a href="mailto:info@jayprasad.com.np">info@jayprasad.com.np</a></p>
-            <p><strong>Phone:</strong> +1 (123) 456-7890</p>
-            <p><strong>Address:</strong> 123 Main Street, Anytown, USA 12345</p>
-
             <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">Contact Form</h2>
-            <form id="contact-form-contact-us" action="https://formspree.io/f/xkgqzdlk">
-              <div class="fb">
-                <label class="rc ac" for="email">Your Email:</label>
-                <input type="email" id="email" name="email" required placeholder="Your email address" class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi" />
-              </div>
-
-              <div class="fb">
-                <label class="rc ac" for="message">Your Message:</label>
-                <textarea id="message" name="message" required rows="4" placeholder="Your message" class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 ci"></textarea>
-              </div>
-
-              <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
-              <div class="tc xf mt-4">
-                <button type="submit" class="vc rg lk gh ml il hi gi _l">Send</button>
-              </div>
+            <form action="https://formspree.io/f/xkgqzdlk" method="POST">
+              <label>
+                Your Email:
+                <input type="email" name="email" required>
+              </label>
+              <label>
+                Your Message:
+                <textarea name="message" required></textarea>
+              </label>
+              <button type="submit">Send</button>
             </form>
           </div>
         </div>
@@ -206,7 +196,7 @@
                 </a>
               </li>
               <li>
-                <a href="#!">
+                <a href="#" onclick="return false;">
                   <svg class="vh ul cl il" width="24" height="24" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_48_1508)">
@@ -261,9 +251,7 @@
 
             <div class="animate_top">
               <h4 class="kk wm tj ec">Email</h4>
-              <p><a href="mailto:info@jayprasad.com.np">info@jayprasad.com.np</a></p>
-              <p><a href="mailto:inquiry@jayprasad.com.np">inquiry@jayprasad.com.np</a></p>
-              <p><a href="mailto:itadmin@jayprasad.com.np">itadmin@jayprasad.com.np</a></p>
+              <p><a href="mailto:helpdesk@jayprasad.com.np">helpdesk@jayprasad.com.np</a></p>
             </div>
 
             <div class="animate_top">
@@ -301,14 +289,14 @@
       <div class="bh ch pm tc uf sf yo wf xf ap cg fp bj">
         <div class="animate_top">
           <ul class="tc wf gg">
-            <li><a href="#!" class="xl">English</a></li>
-            <li><a href="#!" class="xl">Privacy Policy</a></li>
-            <li><a href="#!" class="xl">Support</a></li>
+            <li><a href="#" onclick="return false;" class="xl">English</a></li>
+            <li><a href="#" onclick="return false;" class="xl">Privacy Policy</a></li>
+            <li><a href="#" onclick="return false;" class="xl">Support</a></li>
           </ul>
         </div>
 
         <div class="animate_top">
-          <p>&copy; 2025 Bijay. All rights reserved. Distributed by <a href="https://thebijay.com" rel="nofollow" target="_blank">TheBijay</a></p>
+          <p>&copy; 2025 Jay Prasad. All rights reserved.</p>
         </div>
       </div>
       <!-- Footer Bottom -->
@@ -327,7 +315,7 @@
   </button>
 
   <!-- ====== Back To Top End ===== -->
-  <script defer src="bundle.js"></script>
+  <script src="scripts/main.js" defer></script>
 </body>
 
 </html>

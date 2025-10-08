@@ -48,7 +48,7 @@
             <li><a href="index.html" class="xl" :class="{ 'mk': page === 'home' }">Home</a></li>
             <li><a href="index.html#features" class="xl">Features</a></li>
             <li class="c i" x-data="{ dropdown: false }">
-              <a href="#!" class="xl tc wf yf bg" @click.prevent="dropdown = !dropdown"
+              <a href="#" onclick="return false;" class="xl tc wf yf bg" @click.prevent="dropdown = !dropdown"
                 :class="{ 'mk': page === 'blog-grid' || page === 'blog-single' || page === 'signin' || page === 'signup' || page === '404' }">
                 Pages
 
@@ -110,20 +110,22 @@
         <div class="animate_top sg vk rm xm">
           <div class="w-full">
             <h1 class="fk vj zp or kk wm wb">Our Services</h1>
-            <p class="fq">We offer a comprehensive range of IT services to help your business succeed. Our team of experts is dedicated to providing high-quality solutions that are tailored to your specific needs. From web development to digital marketing, we have the skills and experience to help you achieve your goals. We are committed to delivering exceptional results that exceed your expectations and provide a solid return on your investment.</p>
-            <p class="fq">Our services are designed to be flexible and scalable, allowing us to adapt to your changing needs. We work closely with you to understand your business and develop a customized plan that aligns with your objectives. We believe in building long-term partnerships with our clients, providing ongoing support and guidance to help you navigate the ever-changing digital landscape. With our expertise and dedication, you can be confident that you are in good hands.</p>
+            <p class="fq">We provide a comprehensive suite of IT services designed to elevate your business in the digital world. Our solutions are crafted to be robust, scalable, and perfectly aligned with your unique objectives. From custom web design to reliable domain hosting, we are your trusted partner for all things digital.</p>
 
-            <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">Web Development</h2>
-            <p>Our web development services are designed to help you create a stunning online presence. We specialize in building fast, responsive, and user-friendly websites that are optimized for performance and search engines. Whether you need a simple brochure website or a complex e-commerce platform, we have the skills and experience to bring your vision to life. We use the latest technologies and best practices to ensure that your website is both beautiful and functional.</p>
+            <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">Web Design and Development</h2>
+            <p>We build beautiful, fast, and responsive websites that provide an exceptional user experience. Our development process focuses on creating a strong online presence for your brand, whether you need a professional portfolio, a corporate website, or a full-featured e-commerce store. We utilize modern technologies to ensure your site is secure, scalable, and optimized for search engines.</p>
+
+            <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">Domain Hosting</h2>
+            <p>Reliable domain hosting is the foundation of your online presence. We offer secure and high-performance hosting solutions that ensure your website is always available to your audience. Our hosting packages include regular backups, security monitoring, and technical support to give you peace of mind.</p>
 
             <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">Graphics Design</h2>
-            <p>Our graphics design services will help you create a strong brand identity that resonates with your target audience. We offer a wide range of design services, including logo design, branding, and marketing materials. Our team of talented designers will work with you to create a unique and memorable brand that sets you apart from the competition. We believe that good design is essential for success, and we are committed to helping you create a brand that you can be proud of.</p>
+            <p>Our graphic design services help you build a compelling brand identity that stands out. We specialize in creating unique logos, branding guidelines, and marketing materials that capture your brand's essence and communicate your message effectively. A strong visual identity is key to making a lasting impression, and we are here to help you create one.</p>
 
             <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">Digital Marketing</h2>
-            <p>Our digital marketing services are designed to help you reach a wider audience and grow your business. We offer a range of services, including search engine optimization (SEO), pay-per-click (PPC) advertising, and social media marketing. Our team of experts will work with you to develop a customized marketing plan that is tailored to your specific needs and budget. We use data-driven strategies to ensure that your marketing campaigns are effective and provide a solid return on your investment.</p>
+            <p>Our digital marketing strategies are designed to help you connect with your target audience and grow your business. We offer a full range of services, including Search Engine Optimization (SEO), content marketing, and social media management. We use data-driven insights to create effective campaigns that deliver measurable results and a strong return on investment.</p>
 
             <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">UI/UX Design</h2>
-            <p>Our UI/UX design services are focused on creating intuitive and engaging user experiences. We believe that a well-designed user interface is essential for success, and we are committed to creating designs that are both beautiful and functional. Our team of experts will work with you to understand your users and create a design that meets their needs and exceeds their expectations. We use a data-driven approach to design, ensuring that our solutions are based on user research and testing.</p>
+            <p>A great user experience is at the heart of every successful digital product. Our UI/UX design services focus on creating intuitive, engaging, and accessible interfaces that delight users. We conduct thorough research and testing to ensure that the final design is not only visually appealing but also easy to use, helping you achieve higher engagement and conversion rates.</p>
           </div>
         </div>
       </div>
@@ -197,7 +199,7 @@
                 </a>
               </li>
               <li>
-                <a href="#!">
+                <a href="#" onclick="return false;">
                   <svg class="vh ul cl il" width="24" height="24" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_48_1508)">
@@ -252,9 +254,7 @@
 
             <div class="animate_top">
               <h4 class="kk wm tj ec">Email</h4>
-              <p><a href="mailto:info@jayprasad.com.np">info@jayprasad.com.np</a></p>
-              <p><a href="mailto:inquiry@jayprasad.com.np">inquiry@jayprasad.com.np</a></p>
-              <p><a href="mailto:itadmin@jayprasad.com.np">itadmin@jayprasad.com.np</a></p>
+              <p><a href="mailto:helpdesk@jayprasad.com.np">helpdesk@jayprasad.com.np</a></p>
             </div>
 
             <div class="animate_top">
@@ -299,7 +299,7 @@
         </div>
 
         <div class="animate_top">
-          <p>&copy; 2025 Bijay. All rights reserved. Distributed by <a href="https://thebijay.com" rel="nofollow" target="_blank">TheBijay</a></p>
+          <p>&copy; 2025 Jay Prasad. All rights reserved.</p>
         </div>
       </div>
       <!-- Footer Bottom -->
@@ -318,7 +318,7 @@
   </button>
 
   <!-- ====== Back To Top End ===== -->
-  <script defer src="bundle.js"></script>
+  <script src="scripts/main.js"></script>
 </body>
 
 </html>
