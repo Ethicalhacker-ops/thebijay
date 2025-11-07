@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>404 | Bijay</title>
-  <link rel="icon" href="favicon.ico">
+  <link rel="icon" href="images/favicon.svg">
   <link href="style.css" rel="stylesheet">
 </head>
 
@@ -73,8 +73,7 @@
 
         <div class="tc wf ig pb no">
           <div class="pc h io pa ra" :class="navigationOpen ? '!-ud-visible' : 'd'">
-            <label class="rc ab i">
-              <input type="checkbox" :value="darkMode" @change="darkMode = !darkMode" class="pf vd yc uk h r za ab" />
+            <button @click="darkMode = !darkMode" class="rc ab i">
               <!-- Icon Sun -->
               <svg :class="{ 'wn' : page === 'home', 'xh' : page === 'home' && stickyMenu }" class="th om" width="25"
                 height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +83,7 @@
               </svg>
               <!-- Icon Sun -->
               <img class="xc nm" src="images/icon-moon.svg" alt="Moon" />
-            </label>
+            </button>
           </div>
 
           <a href="signin.html" :class="{ 'nk yl' : page === 'home', 'ok' : page === 'home' && stickyMenu }"
